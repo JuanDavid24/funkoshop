@@ -84,7 +84,7 @@ img {
     width: 100%;
 }
 
-.main-container {
+.container {
     max-width: 1200px;
     margin: 0px auto;
 }
@@ -331,6 +331,20 @@ header {
     color: var(--secondary-solid);
     font-weight: 700;
 }
+
+/* FOOTER */
+
+.footer {
+    background-color: var(--dark-bg-solid);
+    padding: var(--spacing-68);
+}
+
+.footer__copy {
+    text-align: center;
+    margin-top: var(--spacing-36);
+}
+
+/* ANIMATIONS */
 
 @keyframes fade {
     0% {opacity: 0;}
