@@ -42,4 +42,7 @@
     --spacing-16: 1.6rem;
     --spacing-12: 1.2rem;
     --spacing-8: 0.8rem;
+
+    /* Pagination buttons */
+    --button-size: 4.4rem;
 }
