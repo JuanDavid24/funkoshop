@@ -1,7 +1,79 @@
-.shop-container {
+#shop {
     margin: var(--spacing-68) auto;
     display: flex;
+    gap: var(--spacing-16);
 }
+
+/* Filter */
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    gap:var(--spacing-28);
+    font-weight: 500;
+    min-width: 240px
+}
+
+.filter__title {
+    font-size: var(--font-large);
+}
+
+.filter input, .filter select {
+    padding: var(--spacing-8);
+    border-radius: 6px;
+    border: 2px solid var(--dark-bg-solid);  
+    font-size: var(--font-small);  
+}
+
+.filter label {
+    font-size: var(--font-small);
+}
+
+.filter__search, .filter__order, .filter__checks{
+    display: flex;
+    flex-direction: column;
+    gap:var(--spacing-16)
+}
+
+.filter__range div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--spacing-16);
+}
+
+.filter__range input {
+    /* font-size: var(--font-medium); */
+    padding: 4px var(--spacing-8);
+    width: var(--spacing-68);
+    font-size: var(--font-medium);
+}
+
+.checklist {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-8);
+}
+
+.check_row {
+    display: flex;
+    align-items: center;
+    margin-left: var(--spacing-20);
+}
+
+.check_row input {
+    height: var(--spacing-24);
+    width: var(--spacing-24);
+    accent-color: var(--primary-solid);
+    border-radius: 6px;
+}
+
+.check_row label {
+    font-size: var(--font-medium);
+    margin-left: var(--spacing-8);
+}
+
+/* Shop content */
 
 .shop-content {
     display: flex;

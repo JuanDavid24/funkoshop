@@ -41,31 +41,50 @@
             </ul>
         </nav>
     </header>
-    <main class="shop-container">
+    <main id="shop" class="container">
         <aside class="filter">
-            <div>
-                <p>BUSCAR</p>
+            <div class="filter__search">
+                <p class="filter__title">BUSCAR</p>
                 <input type="text" name="Buscar" placeholder="Item o categoría">
             </div>
-            <div>
-                <p>ORDENAR POR</p>
+            <div class="filter__order">
+                <p class="filter__title">ORDENAR POR</p>
                 <select name="" id="">
                     <option value="value1" selected>Mayor a menor</option>
                     <option value="value2">Opcion2</option>
                     <option value="value3">Opcion3</option>
                 </select>
             </div>
-            <div>
-                <p>PRECIO</p>
-            <label>MIN</label><input type="number" placeholder="0">
-            <label>MAX</label><input type="number" placeholder="0">
+            <div class="filter__range">
+                <p class="filter__title">PRECIO</p>
+                <div>
+                    <label>MIN</label>
+                    <input type="number" placeholder="0">
+                    <span>-</span>
+                    <label>MAX</label>
+                    <input type="number" placeholder="0">
+                </div>
             </div>
-            <div>
-                <p>FILTRAR</p>
-                <input type="checkbox" name="" id="nuevos"><label for="nuevos">NUEVOS</label>
-                <input type="checkbox" name="" id="ofertas"><label for="ofertas">OFERTAS</label>
-                <input type="checkbox" name="" id="ed-especial"><label for="ed-especial">EDICIÓN ESPECIAL</label>
-                <input type="checkbox" name="" id="fav"><label for="fav">FAVORITOS</label>
+            <div class="filter__checks">
+                <p class="filter__title">FILTRAR</p>
+                <div class="checklist">
+                    <div class="check_row">
+                        <input type="checkbox" name="" id="nuevos">
+                        <label for="nuevos">NUEVOS</label>
+                    </div>
+                    <div class="check_row">
+                        <input class="check" type="checkbox" name="" id="ofertas">
+                        <label for="ofertas">OFERTAS</label>
+                    </div>
+                    <div class="check_row">
+                        <input type="checkbox" name="" id="ed-especial">
+                        <label for="ed-especial">EDICIÓN ESPECIAL</label>
+                    </div>
+                    <div class="check_row">
+                        <input type="checkbox" name="" id="fav">
+                        <label for="fav">FAVORITOS</label>
+                    </div>
+                </div>
             </div>
         </aside>
         <section class="shop-content">
