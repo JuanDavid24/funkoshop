@@ -1,0 +1,96 @@
+.item {
+    display: flex;
+    align-items: center;
+    margin: var(--spacing-128) auto;
+}
+
+.item__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-16);
+}
+
+.item__license {
+    font-size: var(--font-xsmall);
+    font-weight: 500;
+}
+
+.item__title {
+    font-size: var(--font-jumbo);
+    font-weight: 700;
+}
+
+.item__text {
+    font-size: var(--font-large);
+    font-weight: 400;
+}
+
+.item__price {
+    font-size: var(--font-jumbo);
+    font-weight: 400;
+}
+
+.item form {
+    display: flex;
+    max-height: var(--spacing-36);
+
+}
+
+.item__input {
+    max-width: 100px;
+    font-size: var(--font-large);
+    color: var(--dark-bg-solid);
+    margin-right: var(--spacing-8);
+}
+
+.item__btn-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+}
+
+.item button {
+    color: var(--light-font-solid);
+    border-width: 0px;    
+    cursor: pointer;
+    transition: background .3s ease-in-out;
+}
+
+.item button:hover {
+    background-color: var(--primary-900);
+}
+
+.item__quantity-btn {
+    font-size: 12px;
+    width: 18px;
+    height: 15px;    
+    background-color: var(--dark-bg-solid);
+}
+
+.item .item__quantity-btn:active {
+    background-color: var(--primary-500);
+}
+
+.item__submit-btn {
+    margin-left: var(--spacing-24);
+    font-family: var(--base-font);
+    font-size: var(--font-medium);
+    font-weight: 400;
+    background-color: var(--primary-solid);
+    padding: 0 var(--spacing-16);
+}
+
+.item .item__submit-btn:active {
+    background-color: var(--primary-500);
+}
+
+.item__promo {
+    font-size: var(--font-xsmall);
+    font-weight: 700;
+    color: var(--secondary-solid);
+}
+
+.item__promo a {
+    text-decoration: underline;
+}
