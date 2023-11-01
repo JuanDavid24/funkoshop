@@ -68,8 +68,8 @@
     background-color: var(--dark-bg-solid);
 }
 
-.item .item__quantity-btn:active {
-    background-color: var(--primary-500);
+.item button:hover {
+    background-color: var(--primary-900);
 }
 
 .item__submit-btn {
