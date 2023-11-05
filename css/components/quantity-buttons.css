@@ -1,0 +1,26 @@
+.btn-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+}
+
+.quantity-btn {
+    font-size: 12px;
+    width: 18px;
+    height: 15px;    
+    background-color: var(--dark-bg-solid);
+    color: var(--light-font-solid);
+    border-width: 0px;    
+    cursor: pointer;
+    transition: background .3s ease-in-out;
+}
+
+.quantity-btn:hover {
+    background-color: var(--primary-900);
+}
+
+.quantity-btn:active {
+    background-color: var(--primary-300);
+    transition: none
+}

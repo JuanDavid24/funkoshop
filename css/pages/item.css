@@ -43,13 +43,6 @@
     margin-right: var(--spacing-8);
 }
 
-.item__btn-col {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 4px;
-}
-
 .item button {
     color: var(--light-font-solid);
     border-width: 0px;    
@@ -57,20 +50,6 @@
     transition: background .3s ease-in-out;
 }
 
-.item button:hover {
-    background-color: var(--primary-900);
-}
-
-.item__quantity-btn {
-    font-size: 12px;
-    width: 18px;
-    height: 15px;    
-    background-color: var(--dark-bg-solid);
-}
-
-.item button:hover {
-    background-color: var(--primary-900);
-}
 
 .item__submit-btn {
     margin-left: var(--spacing-24);
@@ -81,8 +60,13 @@
     padding: 0 var(--spacing-16);
 }
 
+.item__submit-btn:hover {
+    background-color: var(--primary-900);
+}
+
 .item .item__submit-btn:active {
     background-color: var(--primary-500);
+    transition: none
 }
 
 .item__promo {
