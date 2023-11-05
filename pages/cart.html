@@ -48,9 +48,10 @@
             <h2 class="cart__title">CARRITO DE COMPRAS</h2>
             <section class="cart__content">
                 <section class="cart__header">
-                    <p>DETALLE DE PRODUCTO</p>
-                    <p>CANTIDAD</p>
-                    <p>TOTAL</p>
+                    <p class="header__title">DETALLE DE PRODUCTO</p>
+                    <p class="header__title">CANTIDAD</p>
+                    <p class="header__title">TOTAL</p>
+                    <p class="header__title"></p>
                 </section>
 
                 <article class="cart__product">
@@ -59,37 +60,69 @@
                             <img src="/img/star-wars/baby-yoda-1.webp" alt="baby yoda">
                         </picture>
                         <div class="product__description">
-                            <h3 class="product__name">BABY YODA BLUEBALL</h3>
-                            <p class="product__license">STAR WARS</p>
+                            <div class="product__description--header">
+                                <h3 class="product__name">BABY YODA BLUEBALL</h3>
+                                <p class="product__license">STAR WARS</p>
+                            </div>
                             <p class="product__price">precio: $1799,99</p>
                         </div>
                     </section>        
 
-                    <input class="product__quantity" type="number" value="0" min="0">          
+                    <div class="product__quantity-container">
+                        <input class="product__quantity" type="number" value="0" min="0">          
+                        <div class="item__btn-col btn-col">
+                            <button class="product__quantity-btn quantity-btn" id="add" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 12 12"><path fill="currentColor" d="M6.5 1.75a.75.75 0 0 0-1.5 0V5H1.75a.75.75 0 0 0 0 1.5H5v3.25a.75.75 0 0 0 1.5 0V6.5h3.25a.75.75 0 0 0 0-1.5H6.5V1.75Z"/></svg>
+    
+                            </button>
+                            <button class="product__quantity-btn quantity-btn" id="substract" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 256 256"><path fill="currentColor" d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12Z"/></svg>
+                            </button>
+                        </div>         
+                    </div>
+
                     <p class="product__total-price" >$ 3599,98</p>
+                    
                     <button class="product__delete-btn">
-                        <img src="/img/icons/x-circle.svg" alt="icono de una cruz">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256"><path fill="currentColor" d="M165.66 101.66L139.31 128l26.35 26.34a8 8 0 0 1-11.32 11.32L128 139.31l-26.34 26.35a8 8 0 0 1-11.32-11.32L116.69 128l-26.35-26.34a8 8 0 0 1 11.32-11.32L128 116.69l26.34-26.35a8 8 0 0 1 11.32 11.32ZM232 128A104 104 0 1 1 128 24a104.11 104.11 0 0 1 104 104Zm-16 0a88 88 0 1 0-88 88a88.1 88.1 0 0 0 88-88Z"/></svg>
                     </button>
                 </article>
-
+                
                 <article class="cart__product">
                     <section class="product__card">
                         <picture class="product__cover">
                             <img src="/img/pokemon/pidgeotto-1.webp" alt="pidgeotto">
                         </picture>
                         <div class="product__description">
-                            <h3 class="product__name">PIDGEOTTO</h3>
-                            <p class="product__license">POKEMON</p>
+                            <div class="product__description--header">
+                                <h3 class="product__name">PIDGEOTTO</h3>
+                                <p class="product__license">POKEMON</p>
+                            </div>
                             <p class="product__price">precio: $1799,99</p>
                         </div>
-                    </section>
+                    </section>        
 
-                    <input class="product__quantity" type="number" value="0" min="0">
+                    <div class="product__quantity-container">
+                        <input class="product__quantity" type="number" value="0" min="0">          
+                        <div class="item__btn-col btn-col">
+                            <button class="product__quantity-btn quantity-btn" id="add" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 12 12"><path fill="currentColor" d="M6.5 1.75a.75.75 0 0 0-1.5 0V5H1.75a.75.75 0 0 0 0 1.5H5v3.25a.75.75 0 0 0 1.5 0V6.5h3.25a.75.75 0 0 0 0-1.5H6.5V1.75Z"/></svg>
+                            </button>
+                            <button class="product__quantity-btn quantity-btn" id="substract" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 256 256"><path fill="currentColor" d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12Z"/></svg>
+                            </button>
+                        </div>         
+                    </div>
+
                     <p class="product__total-price" >$ 3599,98</p>
                     <button class="product__delete-btn">
-                        <img src="/img/icons/x-circle.svg" alt="icono de una cruz">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256"><path fill="currentColor" d="M165.66 101.66L139.31 128l26.35 26.34a8 8 0 0 1-11.32 11.32L128 139.31l-26.34 26.35a8 8 0 0 1-11.32-11.32L116.69 128l-26.35-26.34a8 8 0 0 1 11.32-11.32L128 116.69l26.34-26.35a8 8 0 0 1 11.32 11.32ZM232 128A104 104 0 1 1 128 24a104.11 104.11 0 0 1 104 104Zm-16 0a88 88 0 1 0-88 88a88.1 88.1 0 0 0 88-88Z"/></svg>
                     </button>
                 </article>
+
+                
+
+                
                 
             </section>
 
@@ -131,6 +164,5 @@
                 <p class="footer__copy">All rights reserved 2023 - Funkoshop &copy;</p>
             </section>
         </footer>
-
     </body>
 </html>
