@@ -1,280 +1,149 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Home | Funkoshop</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    
-    <body>
-        <!-- Inicio Header -->
-       <!-- Trabajamos en las imagenes y logos de la parte superior-->
-       <!-- Trabajamos en SHOP - Contacto - LOGIN -->
-       <header>
-            <nav>
-                <!-- Trabajamos con 2 estructuras: logo y navegación-->
-                <picture>
-                        <a href="/index.html">
-                            <img src="/img/branding/logo_light_horizontal.svg" alt="Isologotipo de la marca Funkoshop">
-                        </a>
-                </picture>
-                
-                <ul>
-                    <li><a href="/pages/shop.html">VER TIENDA</a></li>
-                    <li><a href="/pages/admin.html">ADMIN</a></li>
-                    <li><a href="/pages/index.html">Salir</a></li>
-                </ul>
-            </nav>
-       </header> <!-- Fin Header -->
-       <main>
-        <!--Intentaremos hacer el buscador ;)-->
-        <form action="index.js" method="GET">
-            <label for="buscador"> <img src="/img/icons/search_icon.svg" alt="Agregar"></label>
-            <input type="buscador" name="buscador" id="buscador">
-        </form>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Funkoshop</title>
+    <link rel="stylesheet" href="../../css/index.css">
+</head>
+<body class="grid-fixed">
 
-        <section> <!--Creamos estructura 2 -->
-            <article>
-                <h2>LISTADO DE PRODUCTOS</h2>
-                <p> AGREGAR </p>
-                <a href="/pages/shop"><img src="/img/icons/mdi_plus-box.png" alt="Agregar"></a>
-            </article>
-               
-        </section> <!--Fin del contenedor de 2 cajas-->
-        <section> 
-        <!--Creamos la tabla-->
-            <article>
-                <!--Cramos la tabla con sus columnas y filas-->
-                    <table cellpadding="6px" cellspacing="30px">
-                        <tr>
-                            <th>ID</th>
-                            <th>Código</th>
-                            <th>Nombre del Producto</th>
-                            <th>Categoria</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-            
-                        <tr>
-                            <td>1 </td>
-                            <td>STW001001</td>
-                            <td>Baby Yoda Blueball</td>
-                            <td>STAR WARS</td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/edit_pencil.svg" alt="Modificar">
-                                </a>
-                        </picture></td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/delete_trash.svg" alt="Eliminar">
-                                </a>
-                        </picture></td>
-                        </tr>
-                        <tr>
-                            <td>2 </td>
-                            <td>STW001002</td>
-                            <td>Boba Fett Fighter</td>
-                            <td>STAR WARS</td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/edit_pencil.svg" alt="Modificar">
-                                </a>
-                        </picture></td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/delete_trash.svg" alt="Eliminar">
-                                </a>
-                        </picture></td>
-                        </tr>
-                        <tr>
-                            <td>3 </td>
-                            <td>STW001003</td>
-                            <td>Luke Skylealker & Grogu</td>
-                            <td>STAR WARS</td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/edit_pencil.svg" alt="Modificar">
-                                </a>
-                        </picture></td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/delete_trash.svg" alt="Eliminar">
-                                </a>
-                        </picture></td>
-                        </tr>
-                        <tr>
-                            <td>4 </td>
-                            <td>STW001004</td>
-                            <td>Stormtrooper Lightsaber</td>
-                            <td>STAR WARS</td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/edit_pencil.svg" alt="Modificar">
-                                </a>
-                        </picture></td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/delete_trash.svg" alt="Eliminar">
-                                </a>
-                        </picture></td>
-                        </tr>
-                        <tr>
-                            <td>5 </td>
-                            <td>PKM001001</td>
-                            <td>Charmander Smiley</td>
-                            <td>Pokemon</td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/edit_pencil.svg" alt="Modificar">
-                                </a>
-                        </picture></td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/delete_trash.svg" alt="Eliminar">
-                                </a>
-                        </picture></td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>PKM001002</td>
-                            <td>Dragonite HI!</td>
-                            <td>Pokemon</td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/edit_pencil.svg" alt="Modificar">
-                                </a>
-                        </picture></td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/delete_trash.svg" alt="Eliminar">
-                                </a>
-                        </picture></td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>PKM001003</td>
-                            <td>Pidgeotto Flying</td>
-                            <td>Pokemon</td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/edit_pencil.svg" alt="Modificar">
-                                </a>
-                        </picture></td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/delete_trash.svg" alt="Eliminar">
-                                </a>
-                        </picture></td>
-                        </tr>
-                        <tr>
-                            <td>9 </td>
-                            <td>PKM001005</td>
-                            <td>Vulpix Fancy</td>
-                            <td>Pokemon</td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/edit_pencil.svg" alt="Modificar">
-                                </a>
-                        </picture></td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/delete_trash.svg" alt="Eliminar">
-                                </a>
-                        </picture></td>
-                        </tr>
-                        <tr>
-                            <td>10 </td>
-                            <td>HPT001001</td>
-                            <td>Harry Potter & Hegwid</td>
-                            <td>HARRY POTTER</td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/edit_pencil.svg" alt="Modificar">
-                                </a>
-                        </picture></td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/delete_trash.svg" alt="Eliminar">
-                                </a>
-                        </picture></td>
-                        </tr>
-                        <tr>
-                            <td>11 </td>
-                            <td>HPT001002</td>
-                            <td>Herminione Ball Dress</td>
-                            <td>HARRY POTTER</td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/edit_pencil.svg" alt="Modificar">
-                                </a>
-                        </picture></td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/delete_trash.svg" alt="Eliminar">
-                                </a>
-                        </picture></td>
-                        </tr>
-                        <tr>
-                            <td>12 </td>
-                            <td>HPT001003</td>
-                            <td>Luna Lovegood Lion Mask</td>
-                            <td>HARRY POTTER</td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/edit_pencil.svg" alt="Modificar">
-                                </a>
-                        </picture></td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/delete_trash.svg" alt="Eliminar">
-                                </a>
-                        </picture></td>
-                        </tr>
-                        <tr>
-                            <td>13 </td>
-                            <td>HPT001004</td>
-                            <td>Snape Patronus</td>
-                            <td>HARRY POTTER</td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/edit_pencil.svg" alt="Modificar">
-                                </a>
-                        </picture></td>
-                            <td> <picture>
-                                <a href="">
-                                    <img src="/img/icons/delete_trash.svg" alt="Eliminar">
-                                </a>
-                        </picture></td>
-                        </tr>
-                    </table>
-                
-            </article>
+    <header>
+        <nav class="navbar container">
+            <picture class="navbar__logo">
+                <a href="/index.html">
+                    <img src="/img/branding/logo_light_horizontal.svg" alt="Logo Funkoshop">
+                </a>
+            </picture>
+        
+            <ul class="navbar__menu">
+                <li class="navbar__item"> 
+                    <a class="navbar__link with-icon" href="/pages/shop.html">VER TIENDA</a> 
+                </li>
+                <li class="navbar__item"> 
+                    <a class="navbar__link" href="/pages/admin.html">ADMIN</a> </li>
+                <li class="navbar__item"> 
+                    <a class="navbar__link" href=#>SALIR</a> </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="admin" class="container">
+        <section class="admin__search">
+            <iconify-icon class="admin__icon" icon="charm:search"></iconify-icon>
+            <input class="admin__search-bar" type="text" name="search" id="search" placeholder="código, nombre o categoria">
         </section>
-       </main>
+        <section class="admin__list">
+            <div class="admin__header">
+                <h2>LISTADO DE PRODUCTOS</h2>
+                <span>AGREGAR<a href="./create.html"><iconify-icon icon="bxs:plus-square" style="color: #f33;"></iconify-icon></a></span>
+            </div>
+            <div class="admin-table">
+                <header class="admin-table__header">
+                    <h3>ID</h3>
+                    <h3>Código</h3>
+                    <h3>Nombre del Producto</h3>
+                    <h3>Categoría</h3>
+                </header>
+                <article class="admin-table__row">
+                    <p>1</p>
+                    <p>STW001001</p>
+                    <p>Baby Yoda Blueball</p>
+                    <p>Figura Coleccionable</p>
+                    <a href=""><iconify-icon icon="mdi:pencil" style="color: #1d84b5;"></iconify-icon></a>
+                    <a href=""><iconify-icon icon="heroicons-solid:trash" style="color: #f33;"></iconify-icon></a>
+                </article>
+                <article class="admin-table__row">
+                    <p>2</p>
+                    <p>STW001002</p>
+                    <p>Boba Fett Fighter</p>
+                    <p>Figura Coleccionable</p>
+                    <a href=""><iconify-icon icon="mdi:pencil" style="color: #1d84b5;"></iconify-icon></a>
+                    <a href=""><iconify-icon icon="heroicons-solid:trash" style="color: #f33;"></iconify-icon></a>
+                </article>
+                <article class="admin-table__row">
+                    <p>3</p>
+                    <p>STW001003</p>
+                    <p>Luke Skylwalker & Grogu</p>
+                    <p>Figura Coleccionable</p>
+                    <a href=""><iconify-icon icon="mdi:pencil" style="color: #1d84b5;"></iconify-icon></a>
+                    <a href=""><iconify-icon icon="heroicons-solid:trash" style="color: #f33;"></iconify-icon></a>
+                </article>
+                <article class="admin-table__row">
+                    <p>4</p>
+                    <p>STW001004</p>
+                    <p>Stormtrooper Lightsaber</p>
+                    <p>Figura Coleccionable</p>
+                    <a href=""><iconify-icon icon="mdi:pencil" style="color: #1d84b5;"></iconify-icon></a>
+                    <a href=""><iconify-icon icon="heroicons-solid:trash" style="color: #f33;"></iconify-icon></a>
+                
+                </article>
+                <article class="admin-table__row">
+                    <p>4</p>
+                    <p>STW001004</p>
+                    <p>Stormtrooper Lightsaber</p>
+                    <p>Figura Coleccionable</p>
+                    <a href=""><iconify-icon icon="mdi:pencil" style="color: #1d84b5;"></iconify-icon></a>
+                    <a href=""><iconify-icon icon="heroicons-solid:trash" style="color: #f33;"></iconify-icon></a>
+                
+                </article>
+                <article class="admin-table__row">
+                    <p>4</p>
+                    <p>STW001004</p>
+                    <p>Stormtrooper Lightsaber</p>
+                    <p>Figura Coleccionable</p>
+                    <a href=""><iconify-icon icon="mdi:pencil" style="color: #1d84b5;"></iconify-icon></a>
+                    <a href=""><iconify-icon icon="heroicons-solid:trash" style="color: #f33;"></iconify-icon></a>
+                
+                </article>
+                <article class="admin-table__row">
+                    <p>4</p>
+                    <p>STW001004</p>
+                    <p>Stormtrooper Lightsaber</p>
+                    <p>Figura Coleccionable</p>
+                    <a href=""><iconify-icon icon="mdi:pencil" style="color: #1d84b5;"></iconify-icon></a>
+                    <a href=""><iconify-icon icon="heroicons-solid:trash" style="color: #f33;"></iconify-icon></a>
+                
+                </article>
+                <article class="admin-table__row">
+                    <p>4</p>
+                    <p>STW001004</p>
+                    <p>Stormtrooper Lightsaber</p>
+                    <p>Figura Coleccionable</p>
+                    <a href=""><iconify-icon icon="mdi:pencil" style="color: #1d84b5;"></iconify-icon></a>
+                    <a href=""><iconify-icon icon="heroicons-solid:trash" style="color: #f33;"></iconify-icon></a>
+                
+                </article>
+            </div>
+        </section>
+    </main>
 
-       <footer>
-           <section>
-               <nav>
-                   <ul>
-                       <li>
-                           <a href="/pages/shop.html">SHOP</a> </li>
-                       <li><a href="/pages/register.html">REGISTRARSE</a></li>
-                       <li><a href="/pages/login.html">LOGIN</a></li>
-                       <li><a href="/pages/contact.html">CONTACTO</a></li>
-                   </ul>
-                   <picture>
-                       <img src="/img/branding/isotype.svg" alt="Logo marca Funkoshop">
-                   </picture>
-               </nav>
-           </section>
-           <section>
-               <p>All rights reserved 2023 - Funkoshop &copy;</p>
-           </section>
-       </footer>
-        <script src="" async defer></script>
-    </body>
+    <footer class="footer">
+        <nav class="navbar container">
+            <ul class="navbar__item">
+                <li class="navbar__item"> 
+                    <a class="navbar__link" href="/pages/shop.html">SHOP</a> 
+                </li>
+                <li class="navbar__item"> 
+                    <a class="navbar__link" href="/pages/register.html">REGISTRARSE</a> 
+                </li>
+                <li class="navbar__item"> 
+                    <a class="navbar__link" href="/pages/login.html">INGRESAR</a> 
+                </li>
+                <li class="navbar__item"> 
+                    <a class="navbar__link" href="/pages/contact.html">CONTACTO</a> 
+                </li>
+            </ul>
+            <picture>
+                <img src="/img/branding/isotype.svg" alt="Logo marca Funkoshop">
+            </picture>
+        </nav>
+        <section>
+            <p class="footer__copy">All rights reserved 2023 - Funkoshop &copy;</p>
+        </section>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+</body>
 </html>
