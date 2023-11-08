@@ -25,9 +25,11 @@
 
     /* Font sizes */
     --font-display: 4.6em;
+    --font-xjumbo: 4.2em;
     --font-jumbo: 3.8em;
     --font-xlarge: 3em;
     --font-large: 2.4em;
+    --font-mlarge: 2.0em;
     --font-medium: 1.8em; /* 1.8em * 10px = 18px */
     --font-small: 1.6em;
     --font-xsmall: 1.4em;
@@ -35,6 +37,7 @@
     /* Spacings */
     --spacing-128: 12.8rem;
     --spacing-68: 6.8rem;
+    --spacing-44: 4.4rem;
     --spacing-36: 3.6rem;
     --spacing-28: 2.8rem;
     --spacing-24: 2.4rem;
