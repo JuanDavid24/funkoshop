@@ -1,0 +1,100 @@
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+    padding: 44px 0;
+}
+
+/* Search */
+
+.admin__search {
+    display: flex;
+    gap: var(--spacing-20);
+    height: 44px;
+    width: 50%;
+}
+
+.admin__search-bar {
+    height: 100%;
+    width: 100%;
+    padding-left: var(--spacing-24);
+    font-size: var(--font-mlarge);
+}
+
+/* Admin header */
+
+.admin__header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-36);
+}
+
+.admin__header h2 {
+    border-style: none;
+    font-size: var(--font-xjumbo);
+    padding: 0;
+} 
+
+.admin__header-add {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-large);
+    font-weight: 700;
+}
+
+.admin__add-icon {
+    display: flex;
+    margin-left: var(--spacing-24);
+}
+
+/* Table */
+
+.admin-table__header, .admin-table__row {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 4fr 3fr 0.5fr 0.5fr;
+    padding-left: var(--spacing-36);
+    margin: var(--spacing-28) 0;
+}
+
+.admin-table__header {
+    margin-top: 0;
+}
+
+.admin-table__header h3 {
+    font-size: var(--font-large);
+}
+
+.admin-table__row:last-child {
+   margin-bottom: 0;
+}
+
+.admin-table__row p {
+    font-size: var(--font-large);
+    font-weight: 500;
+}
+
+/* Icon effects */
+
+.icon-primary {
+    transition: color .2s ease-in-out;
+}
+
+.icon-primary:hover{
+    color:var(--primary-500) !important;
+}
+
+.icon-primary:active{
+    color:var(--primary-300) !important;  
+}
+
+.icon-secondary {
+    transition: color .2s ease-in-out;
+}
+
+.icon-secondary:hover{
+    color:var(--secondary-500) !important;
+}
+
+.icon-secondary:active{
+    color:var(--secondary-300) !important;  
+}
