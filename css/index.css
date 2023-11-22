@@ -14,7 +14,8 @@
 /* Components */
 @import url(./components/slider.css);
 @import url(./components/card.css);
-@import url(./components/quantity-buttons.css);
+@import url(./components/buttons.css);
+@import url(./components/input.css);
 
 /* Pages */
 @import url(./pages/home.css);

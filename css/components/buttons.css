@@ -1,3 +1,4 @@
+/* QUANTITY BUTTONS (+/-) */
 .btn-col {
     display: flex;
     flex-direction: column;
@@ -23,4 +24,22 @@
 .quantity-btn:active {
     background-color: var(--primary-300);
     transition: none
+}
+
+/* PRIMARY BUTTON */
+.btn-primary {
+    background-color: var(--primary-solid);
+    color: var(--light-font-solid);
+    font-size: (--font-small);
+    border-width: 0px;    
+    cursor: pointer;
+    transition: background .3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-900);
+}
+
+.btn-primary:active{
+    background-color: var(--primary-bold);
 }
