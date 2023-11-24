@@ -30,7 +30,9 @@
 .btn-primary {
     background-color: var(--primary-solid);
     color: var(--light-font-solid);
+    font-family: var(--base-font);
     font-size: (--font-small);
+    padding: var(--spacing-12) var(--spacing-28);
     border-width: 0px;    
     cursor: pointer;
     transition: background .3s ease-in-out;
