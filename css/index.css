@@ -16,6 +16,7 @@
 @import url(./components/card.css);
 @import url(./components/buttons.css);
 @import url(./components/input.css);
+@import url(./components/form.css);
 
 /* Pages */
 @import url(./pages/home.css);
@@ -24,3 +25,4 @@
 @import url(./pages/cart.css);
 @import url(./pages/admin.css);
 @import url(./pages/login.css);
+@import url(./pages/register.css);
