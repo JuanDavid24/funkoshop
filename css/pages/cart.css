@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-h2 {
+.cart h2 {
     align-self: self-start;
     font-family: var(--alternative-font);
     font-size: var(--font-display);
