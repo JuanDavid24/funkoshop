@@ -104,7 +104,7 @@
     color: var(--dark-300);
 }
 
-.product-input-underlined {
+.product-form .input-underlined {
     text-align: center;
     font-size: var(--font-medium);
 }
