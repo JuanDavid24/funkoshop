@@ -55,6 +55,11 @@
     background-position: right center;
 }
 
+.product-form option{
+    color: var(--dark-solid);
+}  
+/* falta el hover de los option */
+
 .product-form__select--large {
     width: 350px;
 }
