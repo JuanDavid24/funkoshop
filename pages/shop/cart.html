@@ -69,13 +69,13 @@
                     </section>        
 
                     <div class="product__quantity-container">
-                        <input class="product__quantity" type="number" value="0" min="0">          
+                        <input class="product__quantity quantity-input" type="number" value="0" min="0">          
                         <div class="item__btn-col btn-col">
-                            <button class="product__quantity-btn quantity-btn" id="add" type="button">
+                            <button class="product__quantity-btn quantity-btn quantity-btn--add" type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 12 12"><path fill="currentColor" d="M6.5 1.75a.75.75 0 0 0-1.5 0V5H1.75a.75.75 0 0 0 0 1.5H5v3.25a.75.75 0 0 0 1.5 0V6.5h3.25a.75.75 0 0 0 0-1.5H6.5V1.75Z"/></svg>
     
                             </button>
-                            <button class="product__quantity-btn quantity-btn" id="substract" type="button">
+                            <button class="product__quantity-btn quantity-btn quantity-btn--substract" type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 256 256"><path fill="currentColor" d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12Z"/></svg>
                             </button>
                         </div>         
@@ -103,12 +103,12 @@
                     </section>        
 
                     <div class="product__quantity-container">
-                        <input class="product__quantity" type="number" value="0" min="0">          
+                        <input class="product__quantity quantity-input" type="number" value="0" min="0">          
                         <div class="item__btn-col btn-col">
-                            <button class="product__quantity-btn quantity-btn" id="add" type="button">
+                            <button class="product__quantity-btn quantity-btn quantity-btn--add" type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 12 12"><path fill="currentColor" d="M6.5 1.75a.75.75 0 0 0-1.5 0V5H1.75a.75.75 0 0 0 0 1.5H5v3.25a.75.75 0 0 0 1.5 0V6.5h3.25a.75.75 0 0 0 0-1.5H6.5V1.75Z"/></svg>
                             </button>
-                            <button class="product__quantity-btn quantity-btn" id="substract" type="button">
+                            <button class="product__quantity-btn quantity-btn quantity-btn--substract" type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 256 256"><path fill="currentColor" d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12Z"/></svg>
                             </button>
                         </div>         
@@ -118,12 +118,7 @@
                     <button class="product__delete-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256"><path fill="currentColor" d="M165.66 101.66L139.31 128l26.35 26.34a8 8 0 0 1-11.32 11.32L128 139.31l-26.34 26.35a8 8 0 0 1-11.32-11.32L116.69 128l-26.35-26.34a8 8 0 0 1 11.32-11.32L128 116.69l26.34-26.35a8 8 0 0 1 11.32 11.32ZM232 128A104 104 0 1 1 128 24a104.11 104.11 0 0 1 104 104Zm-16 0a88 88 0 1 0-88 88a88.1 88.1 0 0 0 88-88Z"/></svg>
                     </button>
-                </article>
-
-                
-
-                
-                
+                </article>    
             </section>
 
             <section class="cart__summary">
@@ -164,5 +159,7 @@
                 <p class="footer__copy">All rights reserved 2023 - Funkoshop &copy;</p>
             </section>
         </footer>
+
+        <script src="/js/quantityInput.js"></script>
     </body>
 </html>

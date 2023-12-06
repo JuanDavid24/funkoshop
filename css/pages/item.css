@@ -38,9 +38,10 @@
 
 .item__input {
     max-width: 100px;
+    margin-right: var(--spacing-8);
     font-size: var(--font-large);
     color: var(--dark-bg-solid);
-    margin-right: var(--spacing-8);
+    text-align: center;
 }
 
 .item__submit-btn {
