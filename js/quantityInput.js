@@ -1,11 +1,15 @@
 let inputList = document.querySelectorAll(".quantity-input");
 
 inputList.forEach(input => input.addEventListener( "change", () => {
+    validarInput(input)
+}));
+
+const validarInput = (input) => {
     if (input.value < 0) {
         alert("Error: La cantidad mínima es 0")
         input.value = 0;
     }
-}));
+}
 
 let buttonList = document.querySelectorAll(".quantity-btn");
 
@@ -20,6 +24,6 @@ const changeInputValue = (btn, input) => {
         input.value++;
     if (btnClasses.includes("quantity-btn--substract")) {
         if (input.value != 0) 
-            input.value--
+            input.value--;
     } 
 }
