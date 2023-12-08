@@ -38,35 +38,16 @@
 
 .item__input {
     max-width: 100px;
+    margin-right: var(--spacing-8);
     font-size: var(--font-large);
     color: var(--dark-bg-solid);
-    margin-right: var(--spacing-8);
+    text-align: center;
 }
-
-.item button {
-    color: var(--light-font-solid);
-    border-width: 0px;    
-    cursor: pointer;
-    transition: background .3s ease-in-out;
-}
-
 
 .item__submit-btn {
     margin-left: var(--spacing-24);
-    font-family: var(--base-font);
     font-size: var(--font-medium);
-    font-weight: 400;
-    background-color: var(--primary-solid);
     padding: 0 var(--spacing-16);
-}
-
-.item__submit-btn:hover {
-    background-color: var(--primary-900);
-}
-
-.item .item__submit-btn:active {
-    background-color: var(--primary-500);
-    transition: none
 }
 
 .item__promo {

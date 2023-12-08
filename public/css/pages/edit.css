@@ -1,0 +1,37 @@
+#edit {
+    margin-top: var(--spacing-36);
+    margin-bottom: var(--spacing-36);
+    max-width: 850px;
+}
+.edit__title {
+    font-size: var(--font-xjumbo);
+    margin-bottom: var(--spacing-36);
+}
+
+.edit__form img {
+    width: 150px;
+}
+
+.product-form__row--img {
+    display: flex;
+    gap: var(--spacing-24);
+}
+
+.product-form__img-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-form__img-box img {
+    border-bottom: 1px solid var(--primary-solid);
+}
+
+.product-form__img-description {
+    font-family: var(--alternative-font);
+    font-size: var(--font-mlarge);
+    font-weight: 500;
+    padding-top: 2px;
+}
+
+

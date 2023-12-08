@@ -1,5 +1,7 @@
 /* External */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.theme.min.css');
+@import url('https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css');
 
 /* Misc */
 @import url(./misc/variables.css);
@@ -14,7 +16,9 @@
 /* Components */
 @import url(./components/slider.css);
 @import url(./components/card.css);
-@import url(./components/quantity-buttons.css);
+@import url(./components/buttons.css);
+@import url(./components/input.css);
+@import url(./components/form.css);
 
 /* Pages */
 @import url(./pages/home.css);
@@ -22,3 +26,7 @@
 @import url(./pages/item.css);
 @import url(./pages/cart.css);
 @import url(./pages/admin.css);
+@import url(./pages/login.css); 
+@import url(./pages/register.css);
+@import url(./pages/create.css);
+@import url(./pages/edit.css);

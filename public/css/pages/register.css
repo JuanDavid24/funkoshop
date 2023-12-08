@@ -1,0 +1,62 @@
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: var(--spacing-36) 0;
+}
+
+.register__title {
+    margin-bottom: var(--spacing-24);
+    font-family: var(--alternative-font);
+    font-size: var(--font-xjumbo);
+}
+
+.register__subtitle {
+    font-family: var(--alternative-font);
+    font-size: var(--font-xlarge);
+    font-weight: 500;
+}
+
+/* FORM */
+
+.register__form {
+    margin-top: var(--spacing-36);
+}
+
+.register__form-row:last-child {
+    padding: 0 var(--spacing-12);
+    justify-content: space-between;
+}
+/* INPUTS */
+
+.register__label {
+    font-size: var(--font-large);
+    font-weight: 400;
+}
+
+.register__input {
+    max-width: 200px;
+}
+
+.register__submit-btn {
+    padding: var(--spacing-12) var(--spacing-28);
+}
+
+.register__check-container {
+    display: flex;
+    gap: var(--spacing-8);
+}
+
+.register__terms-input {
+    width: var(--spacing-16);
+    accent-color: var(--primary-solid);
+}
+
+.register__terms-label {
+    font-size: var(--font-medium);
+    font-weight: 400;
+}
+
+.register__terms-label a {
+    color: var(--secondary-solid);
+}

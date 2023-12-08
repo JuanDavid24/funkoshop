@@ -1,0 +1,63 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: var(--spacing-36) 0;
+    /* gap: var(--spacing-36); */
+}
+
+.login__title {
+    font-family: var(--alternative-font);
+    font-size: var(--font-xjumbo);
+}
+
+/* FORM */
+
+.login__form {
+    margin-top: var(--spacing-36);
+    margin-bottom: var(--spacing-24);
+}
+
+/* INPUTS */
+
+.login__label {
+    font-size: var(--font-large);
+    font-weight: 400;
+}
+
+.login__input {
+    max-width: 200px;
+}
+
+.login__input--pass {
+    letter-spacing: 3px;
+    font-size: var(--font-jumbo);
+}
+
+.login__submit-btn {
+    padding: var(--spacing-12) var(--spacing-28);
+}
+
+.login__check-container {
+    display: flex;
+    gap: var(--spacing-8);
+}
+
+
+.login__remember-input {
+    width: var(--spacing-20);
+    border-radius: 6px;
+    accent-color: var(--primary-solid);
+    border: 2px solid #1F1F1F;
+}
+
+.login__remember-label {
+    font-size: var(--font-medium);
+    font-weight: 400;
+}
+
+.login__forgot-pass {
+    font-size: var(--font-xsmall);
+    color: var(--secondary-solid);
+    font-weight: 400;
+}

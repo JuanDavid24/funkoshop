@@ -1,0 +1,9 @@
+#create {
+    margin-top: var(--spacing-36);
+    margin-bottom: var(--spacing-36);
+    max-width: 850px;
+}
+.create__title {
+    font-size: var(--font-xjumbo);
+    margin-bottom: var(--spacing-36);
+}
