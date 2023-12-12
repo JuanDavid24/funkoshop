@@ -1,8 +1,12 @@
 const mainControllers = {
-    home: (req, res) => res.send('home route'),
-    contact: (req, res) => res.send('contact route'),
-    about: (req, res) => res.send('about route'),
-    faqs: (req, res) => res.send('faqs route')
+    homeView: (req, res) => {
+        res.render('index', {
+            title: "Home"
+        });
+    },
+    contactView: (req, res) => res.send('contact route'),
+    aboutView: (req, res) => res.send('about route'),
+    faqsView: (req, res) => res.send('faqs route')
 }
 
 module.exports = mainControllers;

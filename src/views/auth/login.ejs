@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title><%= title %> | FUNKOSHOP</title>
+        <meta name="description" content="HTML-CSS">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/index.css">
+    </head>    
+
+    <body>
+        <!-- Header -->
+        <%- include('../partials/header.ejs') %>
+
+        <main class="login-container">
+            <h1 class="login__title">INGRESAR A MI CUENTA</h1>
+    
+            <form class="user-data-form login__form">
+                <div class="user-data-form__row login__form-row">
+                    <label class="login__label" for="email">Email:</label>
+                    <input class="input-underlined login__input" type="email" placeholder="johndoe@correo.com" name="email" id="email">
+                </div>
+                <div class="user-data-form__row login__form-row">
+                    <label class="login__label" for="contrasena">Contraseña:</label>
+                    <input class="input-underlined login__input login__input--pass" type="password" name="contrasena" id="contrasena">     
+                </div>
+                <div class="user-data-form__row login__form-row">
+                    <input class="btn-primary login__submit-btn" type="submit" value="Ingresar">
+                    <div class="login__check-container">
+                        <input class="login__remember-input" type="checkbox" name="recordarme" id="recordarme">
+                        <label class="login__remember-label" for="recordarme">Recordarme</label>
+                    </div>
+                </div>
+            </form>
+            
+            <a class="login__forgot-pass" href="">Olvidé mi contraseña</a>
+        </main>
+        
+        <!--  footer  -->
+        <%- include('../partials/footer.ejs') %>
+
+        <script src="" async defer></script>
+    </body>
+</html>

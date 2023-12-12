@@ -1,9 +1,17 @@
+const path = require('path')
+
 const shopControllers = {
-    shop: (req, res) => res.send('shop route'),
-    item: (req, res) => res.send('item route'),
-    itemAdd: (req, res) => res.send('itemAdd route'),
-    cart: (req, res) => res.send('cart route'),
-    cartAdd: (req, res) => res.send('cartAdd route')
+    shopView: (req, res) => res.render(path.join(__dirname, '../views/shop/shop.ejs'), {
+        title: "Shop"
+    }),
+    itemView: (req, res) => res.render(path.join(__dirname, '../views/shop/item.ejs'), {
+        title: "Item"
+    }),
+    addItem: (req, res) => res.send('addItem route'),
+    cartView: (req, res) => res.render(path.join(__dirname, '../views/shop/cart.ejs'), {
+        title: "Carrito"
+    }),
+    addToCart: (req, res) => res.send('addToCart route')
 }
 
 module.exports = shopControllers;

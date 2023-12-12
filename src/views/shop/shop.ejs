@@ -1,46 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/index.css">
-    <title>Tienda Funkoshop</title>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title><%= title %> | FUNKOSHOP</title>
+        <meta name="description" content="HTML-CSS">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/index.css">
+    </head>
 <body>
-    <header>
-        <nav class="navbar container">
-            <picture class="navbar__logo">
-                <a href="/index.html">
-                    <img src="/img/branding/logo_light_horizontal.svg" alt="Logo Funkoshop">
-                </a>
-            </picture>
-        
-            <ul class="navbar__menu">
-                <li class="navbar__item with-submenu"> 
-                    <a class="navbar__link with-icon" href="/pages/shop/shop.html">SHOP<iconify-icon icon="mdi:chevron-down"></iconify-icon> </a> 
-                    <ul class="submenu">
-                        <li class="submenu__item">
-                            <a class="submenu__link" href="">Funkos</a>
-                        </li>
-                        <li class="submenu__item">
-                            <a class="submenu__link" href="">Remeras</a>
-                        </li>
-                        <li class="submenu__item">
-                            <a class="submenu__link" href="">Llaveros</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="navbar__item"> 
-                    <a class="navbar__link" href="#">CONTACTO</a> </li>
-                <li class="navbar__item"> 
-                    <a class="navbar__link" href="/pages/admin/login.html">LOGIN</a> </li>
-                <li class="navbar__item"> 
-                    <a class="navbar__cart" href="/pages/shop/cart.html">
-                    <img src="/img/icons/cart-icon.svg" alt="Carrito de compras">
-                </a> </li>             
-            </ul>
-        </nav>
-    </header>
+    
+    <%- include('../partials/header.ejs') %>
+
     <main id="shop" class="container">
         <aside class="filter">
             <div class="filter__search">
@@ -91,7 +62,7 @@
             <ul class="shop-items">
                 <li class="shop-item">
                     <article class="card-item">
-                        <a class="card-item__list" href="./item.html">
+                        <a class="card-item__list" href="/shop/item/1">
                             <picture class="card-item__cover">
                                 <img class="card-item__img--front" src="/img/star-wars/trooper-1.webp" alt="Funko del startrooper">
                                 <img class="card-item__img--back" src="/img/star-wars/trooper-box.webp" alt="Funko del startrooper">
@@ -107,7 +78,7 @@
                 </li>
                 <li class="shop-item">
                     <article class="card-item">
-                        <a class="card-item__list" href="./item.html">
+                        <a class="card-item__list" href="/shop/item/1">
                             <picture class="card-item__cover">
                                 <img class="card-item__img--front" src="/img/pokemon/pidgeotto-1.webp" alt="Funko de Pidgeotto">
                                 <img class="card-item__img--back" src="/img/pokemon/pidgeotto-box.webp" alt="Funko de Pidgeotto">
@@ -123,7 +94,7 @@
                 </li>
                 <li class="shop-item">
                     <article class="card-item">
-                        <a class="card-item__list" href="./item.html">
+                        <a class="card-item__list" href="/shop/item/1">
                             <picture class="card-item__cover">
                                 <img class="card-item__img--front" src="/img/harry-potter/luna-1.webp" alt="Funko de Luna Lovegood de Harry Potter">
                                 <img class="card-item__img--back" src="/img/harry-potter/luna-box.webp" alt="Funko de Luna Lovegood de Harry Potter">
@@ -139,7 +110,7 @@
                 </li>
                 <li class="shop-item">
                     <article class="card-item">
-                        <a class="card-item__list" href="./item.html">
+                        <a class="card-item__list" href="/shop/item/1">
                             <picture class="card-item__cover">
                                 <img class="card-item__img--front" src="/img/star-wars/trooper-1.webp" alt="Funko del startrooper">
                                 <img class="card-item__img--back" src="/img/star-wars/trooper-box.webp" alt="Funko del startrooper">
@@ -155,7 +126,7 @@
                 </li>
                 <li class="shop-item">
                     <article class="card-item">
-                        <a class="card-item__list" href="./item.html">
+                        <a class="card-item__list" href="/shop/item/1">
                             <picture class="card-item__cover">
                                 <img class="card-item__img--front" src="/img/pokemon/pidgeotto-1.webp" alt="Funko de Pidgeotto">
                                 <img class="card-item__img--back" src="/img/pokemon/pidgeotto-box.webp" alt="Funko de Pidgeotto">
@@ -171,7 +142,7 @@
                 </li>
                 <li class="shop-item">
                     <article class="card-item">
-                        <a class="card-item__list" href="./item.html">
+                        <a class="card-item__list" href="/shop/item/1">
                             <picture class="card-item__cover">
                                 <img class="card-item__img--front" src="/img/harry-potter/luna-1.webp" alt="Funko de Luna Lovegood de Harry Potter">
                                 <img class="card-item__img--back" src="/img/harry-potter/luna-box.webp" alt="Funko de Luna Lovegood de Harry Potter">
@@ -187,7 +158,7 @@
                 </li>
                 <li class="shop-item">
                     <article class="card-item">
-                        <a class="card-item__list" href="./item.html">
+                        <a class="card-item__list" href="/shop/item/1">
                             <picture class="card-item__cover">
                                 <img class="card-item__img--front" src="/img/star-wars/trooper-1.webp" alt="Funko del startrooper">
                                 <img class="card-item__img--back" src="/img/star-wars/trooper-box.webp" alt="Funko del startrooper">
@@ -203,7 +174,7 @@
                 </li>
                 <li class="shop-item">
                     <article class="card-item">
-                        <a class="card-item__list" href="./item.html">
+                        <a class="card-item__list" href="/shop/item/1">
                             <picture class="card-item__cover">
                                 <img class="card-item__img--front" src="/img/pokemon/pidgeotto-1.webp" alt="Funko de Pidgeotto">
                                 <img class="card-item__img--back" src="/img/pokemon/pidgeotto-box.webp" alt="Funko de Pidgeotto">
@@ -219,7 +190,7 @@
                 </li>
                 <li class="shop-item">
                     <article class="card-item">
-                        <a class="card-item__list" href="./item.html">
+                        <a class="card-item__list" href="/shop/item/1">
                             <picture class="card-item__cover">
                                 <img class="card-item__img--front" src="/img/harry-potter/luna-1.webp" alt="Funko de Luna Lovegood de Harry Potter">
                                 <img class="card-item__img--back" src="/img/harry-potter/luna-box.webp" alt="Funko de Luna Lovegood de Harry Potter">
@@ -248,26 +219,7 @@
         </section>
     </main>
 
-    <footer class="footer">
-        <nav class="navbar container">
-            <ul class="navbar__item">
-                <li class="navbar__item"> 
-                    <a class="navbar__link" href="/pages/shop/shop.html">SHOP</a> 
-                </li>
-                <li class="navbar__item"> 
-                    <a class="navbar__link" href="/pages/admin/login.html">INGRESAR</a> 
-                </li>
-                <li class="navbar__item"> 
-                    <a class="navbar__link" href="#">CONTACTO</a> 
-                </li>
-            </ul>
-            <picture>
-                <img src="/img/branding/isotype.svg" alt="Logo marca Funkoshop">
-            </picture>
-        </nav>
-        <section>
-            <p class="footer__copy">All rights reserved 2023 - Funkoshop &copy;</p>
-        </section>
-    </footer>  
+    <%- include('../partials/footer.ejs') %>
+     
 </body>
 </html>

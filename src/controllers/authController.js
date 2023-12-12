@@ -1,9 +1,15 @@
+const path = require('path')
+
 const authControllers = {
-    loginGet: (req, res) => res.send('Login GET route'),
-    loginPost: (req, res) => res.send('login POST route'),
-    registerGet: (req, res) => res.send('register GET route'),
-    registerPost: (req, res) => res.send('register POST route'),
-    logout: (req, res) => res.send('logout route')
+    loginView: (req, res) => res.render(path.join(__dirname, '../views/auth/login.ejs'), {
+        title: "Login"
+    }),
+    sendLoginData: (req, res) => res.send('login POST route'),
+    registerView: (req, res) => res.render(path.join(__dirname, '../views/auth/register.ejs'), {
+        title: "Registrarse"
+    }),
+    sendRegisterData: (req, res) => res.send('register POST route'),
+    logout: (req, res) => res.send('Logout route'),
 }
 
 module.exports = authControllers;
