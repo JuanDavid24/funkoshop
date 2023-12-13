@@ -16,13 +16,14 @@
         <main class="container">
             <article class="item">
                 <picture class="item__cover">
-                    <img src="/img/star-wars/baby-yoda-1.webp" alt="Figura Funko pop Baby Yoda - Star wars">
+                    <img class="item__img--front" src="<%= item.img_front %>" alt="Figura Funko pop Baby Yoda - Star wars (frente)">
+                    <img class="item__img--back" src="<%= item.img_back %>" alt="Figura Funko pop Baby Yoda - Star wars (dorso)">
                 </picture>
                 <section class="item__info">
-                    <p class="item__license">STAR WARS</p>
-                    <h3 class="item__title">BABY YODA BLUEBALL</h3>
-                    <p class="item__text">Figura coleccionable de Baby Yoda (Grogu) - The Mandalorian Saga, edición limitada.</p>
-                    <p class="item__price">$ 1799,99</p>
+                    <p class="item__license"><%= item.licence_name %></p>
+                    <h3 class="item__title"><%= item.product_name %></h3>
+                    <p class="item__text"><%= item.product_description %></p>
+                    <p class="item__price"><%= item.product_price %></p>
                     <form>
                         <input id="quantity" class="item__input quantity-input" type="number" value="0"  min="0">
                         <div class="item__btn-col btn-col">  
@@ -38,7 +39,7 @@
                     </form>
                     <div class="item__promo">
                         <a href="">Ver métodos de pago</a>
-                        <span> - 3 CUOTAS SIN INTERÉS</span>
+                        <span> - <%= item.dues %> CUOTAS SIN INTERÉS</span>
                     </div>
                 </section>
             </article>
