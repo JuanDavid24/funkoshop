@@ -60,57 +60,27 @@
                 <h2 class="slider__title">ULTIMOS LANZAMIENTOS</h2>
                 <div class="glide__track" data-glide-el="track">
                     <ul class="slider__items glide__slides">
-                        <li class="slider__item glide__slide">
-                            <article class="card-item">
-                                <a class="card-item__link" href="#">
-                                    <picture class="card-item__cover">
-                                        <span class="card-item__tag">Nuevo</span>
-                                        <img class="card-item__img--front" src="/img/star-wars/trooper-1.webp" alt="Funko del startrooper">
-                                        <img class="card-item__img--back" src="/img/star-wars/trooper-box.webp" alt="Funko del startrooper">
-                                    </picture>
-                                </a>
-                                <div class="card-item__content">
-                                    <p class="card-item__licence">STAR WARS</p>
-                                    <h4 class="card-item__title">STORMTROOPER LIGHTSABER</h4>
-                                    <p class="card-item__price">$1799.99</p>
-                                    <p class="card-item__promo">3 cuotas sin interes</p>  
-                                </div>
-                            </article>
-                        </li>
-                        <li class="slider__item glide__slide">
-                            <article class="card-item">
-                                <a class="card-item__link" href="">
-                                    <picture class="card-item__cover">
-                                        <span class="card-item__tag">Nuevo</span>
-                                        <img class="card-item__img--front" src="/img/pokemon/pidgeotto-1.webp" alt="Funko de Pidgeotto">
-                                        <img class="card-item__img--back" src="/img/pokemon/pidgeotto-box.webp" alt="Funko de Pidgeotto">
-                                    </picture>
-                                </a>
-                                <div class="card-item__content">
-                                    <p class="card-item__licence">POKEMON</p>
-                                    <h4 class="card-item__title">PIDGEOTTO</h4>
-                                    <p class="card-item__price">$1799.99</p>
-                                    <p class="card-item__promo">3 cuotas sin interes</p>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="slider__item glide__slide">
-                            <article class="card-item">
-                                <a class="card-item__link" href="">
-                                    <picture class="card-item__cover">
-                                        <span class="card-item__tag">Nuevo</span>
-                                        <img class="card-item__img--front" src="/img/harry-potter/luna-1.webp" alt="Funko de Luna Lovegood de Harry Potter">
-                                        <img class="card-item__img--back" src="/img/harry-potter/luna-box.webp" alt="Funko de Luna Lovegood de Harry Potter">
-                                    </picture>
-                                </a>
-                                <div class="card-item__content">
-                                    <p class="card-item__licence">HARRY POTTER</p>
-                                    <h4 class="card-item__title">LUNA LOVEGOOD LION MASK</h4>
-                                    <p class="card-item__price">$1799.99</p>
-                                    <p class="card-item__promo">3 cuotas sin interes</p>
-                                </div> 
-                            </article>
-                        </li>
+
+                        <% newItems.forEach(item => { %>
+                            <li class="slider__item glide__slide">
+                                <article class="card-item">
+                                    <a class="card-item__list" href="/shop/item/<%= item.product_id %>">
+                                        <picture class="card-item__cover">
+                                            <span class="card-item__tag">Nuevo</span>
+                                            <img class="card-item__img--front" src="<%= item.img_front %>" alt="Funko del startrooper">
+                                            <img class="card-item__img--back" src="<%= item.img_back %>" alt="Funko del startrooper">
+                                        </picture>
+                                        <div class="card-item__content">
+                                            <p class="card-item__licence"><%= item.licence_name %></p>
+                                            <h4 class="card-item__title"><%= item.product_name %></h4>
+                                            <p class="card-item__price"><%= item.product_price %></p>
+                                            <p class="card-item__promo"><%= item.dues %> CUOTAS SIN INTERÉS</p>
+                                        </div>
+                                    </a>
+                                </article>
+                            </li>
+                        <% }) %>
+
                     </ul>
                 </div>
                 <div class="glide__arrows" data-glide-el="controls">
