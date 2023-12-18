@@ -1,10 +1,12 @@
 const path = require('path');
+const data = require( path.join(__dirname, '../data.js') );
 const isAdmin = true;
 
 const adminControllers = {
     adminView: (req, res) => res.render(path.join(__dirname, '../views/admin/admin.ejs'), {
         title: "Admin",
-        isAdmin
+        isAdmin,
+        data
     }),
     createView: (req, res) => res.render(path.join(__dirname, '../views/admin/create.ejs'), {
         title: "Crear",
