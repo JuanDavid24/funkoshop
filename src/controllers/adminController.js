@@ -1,15 +1,19 @@
 const path = require('path');
+const isAdmin = true;
 
 const adminControllers = {
     adminView: (req, res) => res.render(path.join(__dirname, '../views/admin/admin.ejs'), {
-        title: "Admin"
+        title: "Admin",
+        isAdmin
     }),
     createView: (req, res) => res.render(path.join(__dirname, '../views/admin/create.ejs'), {
-        title: "Crear"
+        title: "Crear",
+        isAdmin
     }),
     createItem: (req, res) => res.send('admin createPost route'),
     editView: (req, res) => res.render(path.join(__dirname, '../views/admin/edit.ejs'), {
-        title: "Editar"
+        title: "Editar",
+        isAdmin
     }),
     editItem: (req, res) => res.send('admin editPut route'),
     deleteItem: (req, res) => res.send('admin delete route')

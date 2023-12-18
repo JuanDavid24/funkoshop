@@ -1,12 +1,14 @@
 const path = require('path')
 const data = require( path.join(__dirname, '../data.js') );
+const isAdmin = false;
 
 const mainControllers = {
     homeView: (req, res) => {
         const newItems = data.slice( data.length - 3 );
         res.render('index', {
             title: "Home",
-            newItems
+            newItems,
+            isAdmin
         });
     },
     contactView: (req, res) => res.send('contact route'),

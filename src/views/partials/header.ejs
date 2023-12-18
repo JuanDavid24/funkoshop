@@ -6,7 +6,17 @@
             </a>
         </picture>
     
-        <ul class="navbar__menu">
+        <ul class="navbar__menu"> 
+            <% if (isAdmin) { %>
+                <li class="navbar__item"> 
+                    <a class="navbar__link with-icon" href="/shop">VER TIENDA</a> 
+                </li>
+                <li class="navbar__item"> 
+                    <a class="navbar__link" href="/admin">ADMIN</a> </li>
+                <li class="navbar__item"> 
+                    <a class="navbar__link" href=/auth/logout>SALIR</a> </li>
+
+            <% } else { %> 
             <li class="navbar__item with-submenu"> 
                 <a class="navbar__link with-icon" href="/shop">SHOP<iconify-icon icon="mdi:chevron-down"></iconify-icon> </a> 
                 <ul class="submenu">
@@ -28,7 +38,11 @@
             <li class="navbar__item"> 
                 <a class="navbar__cart" href="/shop/cart">
                 <img src="/img/icons/cart-icon.svg" alt="Carrito de compras">
-            </a> </li>             
+            </a> </li> 
+            <% } %>
+        </ul>
+
+        <ul class="navbar__menu">
         </ul>
     </nav>
 </header>
