@@ -1,5 +1,5 @@
 const path = require('path')
-const data = require( path.join(__dirname, '../data.js') );
+const data = require( path.join(__dirname, '../data.json') );
 const isAdmin = false;
 
 const mainControllers = {

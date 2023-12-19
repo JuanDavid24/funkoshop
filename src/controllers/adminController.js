@@ -1,5 +1,5 @@
 const path = require('path');
-const data = require( path.join(__dirname, '../data.js') );
+const data = require( path.join(__dirname, '../data.json') );
 const isAdmin = true;
 const categories = ["Figuras coleccionables", "Llaveros", "Remeras"];
 const licences = ["Pokemon", "Harry Potter", "Star Wars"];
