@@ -76,13 +76,12 @@
                 <div class="product-form__box">
                     <label class="product-form__label" for="dues">Cuotas:</label>
                     <select class="product-form__select product-form__select--large" name="dues" id="dues">
-                        <% duesOptions.forEach(duesOption => { %>
-                            <option value="<%= duesOption.index %>" 
-                                <% if (duesOption === item.dues) { %> selected <% } %>> 
-                                <%= duesOption %></option>
+                        <option value="0" selected>Sin coutas</option>
+                        <% dues.forEach(duesOption => { %> 
+                            <option value="<%= duesOption %>" 
+                                <% if (item.dues == duesOption) { %> selected <% } %>> 
+                                <%= duesOption %> cuotas s/ interés</option>
                         <% }) %>
-                        <option value="0">Sin cuotas</option>
-                       
                     </select>
                 </div>
             </div>

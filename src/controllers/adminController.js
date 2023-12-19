@@ -3,17 +3,9 @@ const data = require( path.join(__dirname, '../data.js') );
 const isAdmin = true;
 const categories = ["Figuras coleccionables", "Llaveros", "Remeras"];
 const licences = ["Pokemon", "Harry Potter", "Star Wars"];
-const duesOptions = [
-    {0: "Sin coutas"},
-    {3: "3 cuotas s/ interés"},
-    {6: "6 cuotas s/ interés"},
-    {9: "9 cuotas s/ interés"},
-    {12: "12 cuotas s/ interés"},
-    {18: "18 cuotas s/ interés"},
-    {24: "24 cuotas s/ interés"}
-]
-
-const adminControllers = {
+const dues = [3, 6, 9, 12, 18, 24];
+    
+    const adminControllers = {
     adminView: (req, res) => res.render(path.join(__dirname, '../views/admin/admin.ejs'), {
         title: "Admin",
         isAdmin,
@@ -34,7 +26,7 @@ const adminControllers = {
             item,
             categories,
             licences,
-            duesOptions
+            dues
     })},
     editItem: (req, res) => res.send('admin editPut route'),
     deleteItem: (req, res) => res.send('admin delete route')
