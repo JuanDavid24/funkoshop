@@ -1,3 +1,5 @@
+const { log } = require('console');
+const fs = require('fs');
 const path = require('path');
 const data = require( path.join(__dirname, '../data.json') );
 const isAdmin = true;
@@ -15,7 +17,16 @@ const dues = [3, 6, 9, 12, 18, 24];
         title: "Crear",
         isAdmin
     }),
-    createItem: (req, res) => res.send('admin createPost route'),
+    createItem: (req, res) => {
+        const data = req.body;
+        const database = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data.json')))
+        res.send(`item creado: ${data}`)
+        const item = {
+            id:  database.length + 1,
+            ...data
+        }
+        console.log(item);
+    },
     editView: (req, res) => {
         const itemId = req.params.id;
         const item = data.find( element => element.product_id == itemId );
