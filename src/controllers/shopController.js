@@ -1,13 +1,16 @@
+const { log } = require('console');
 const path = require('path')
 const data = require( path.join(__dirname, '../data.json') );
 const isAdmin = false;
 
 const shopControllers = {
     shopView: (req, res) =>  {
+        let collection = req.query.collection ? req.query.collection : "";
+        let shopData = collection ? data.filter( item => item.licence_name.toLowerCase() == collection ) : data;
         res.render(path.join(__dirname, '../views/shop/shop.ejs'), {
         title: "Shop",
-        isAdmin,  
-        data     
+        isAdmin, 
+        shopData       
     })},
 
     itemView: (req, res) => {
@@ -25,11 +28,16 @@ const shopControllers = {
 
     addItem: (req, res) => res.send('addItem route'),
     cartView: (req, res) => {
-        
+        //carrito de ejemplo
+        const cart = [
+            {"product_id": 2, "quantity": 5},
+            {"product_id": 5, "quantity": 4}
+        ]
         res.render(path.join(__dirname, '../views/shop/cart.ejs'), {
             title: "Carrito",
             isAdmin,
-            data
+            data,
+            cart
         })
     },
 
