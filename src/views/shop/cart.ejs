@@ -22,76 +22,86 @@
                     <p class="header__title">TOTAL</p>
                     <p class="header__title"></p>
                 </section>
+                
+                <% if (cart) { %>     
+                    <% let totalQuantity = 0; let subtotalMount = 0; %> 
+                    <% cart.forEach(cartProduct => { %>
+                        <% const product = data.find(item => item.product_id === cartProduct.product_id) %>
+                        <% totalQuantity += cartProduct.quantity; %>
+                        <% subtotalMount += product.product_price * cartProduct.quantity; %> 
 
-                <% cart.forEach(cartProduct => { %>
-                    <% const product = data.find(item => item.product_id === cartProduct.product_id) %>
-                    <article class="cart__product">
-                        <section class="product__card">
-                            <picture class="product__cover">
-                                <img src="<%= product.img_front %>" alt="baby yoda">
-                            </picture>
-                            <div class="product__description">
-                                <div class="product__description--header">
-                                    <h3 class="product__name"> <%= product.product_name.toUpperCase() %> </h3>
-                                    <p class="product__license"> <%= product.licence_name.toUpperCase() %> </p>
+                        <article class="cart__product">
+                            <section class="product__card">
+                                <picture class="product__cover">
+                                    <img src="<%= product.img_front %>" alt="baby yoda">
+                                </picture>
+                                <div class="product__description">
+                                    <div class="product__description--header">
+                                        <h3 class="product__name"> <%= product.product_name.toUpperCase() %> </h3>
+                                        <p class="product__license"> <%= product.licence_name.toUpperCase() %> </p>
+                                    </div>
+                                    <p class="product__price">Precio: <span class="currency"><%=product.product_price%></span></p>
                                 </div>
-                                <p class="product__price">precio: $ <%= product.product_price %> </p>
+                            </section>
+    
+                            <div class="product__quantity-container">
+                                <input class="product__quantity quantity-input" type="number" value= <%= cartProduct.quantity %> min="0">
+                                <div class="item__btn-col btn-col">
+                                    <button class="product__quantity-btn quantity-btn quantity-btn--add" type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 12 12"><path fill="currentColor" d="M6.5 1.75a.75.75 0 0 0-1.5 0V5H1.75a.75.75 0 0 0 0 1.5H5v3.25a.75.75 0 0 0 1.5 0V6.5h3.25a.75.75 0 0 0 0-1.5H6.5V1.75Z"/></svg>
+    
+                                    </button>
+                                    <button class="product__quantity-btn quantity-btn quantity-btn--substract" type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 256 256"><path fill="currentColor" d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12Z"/></svg>
+                                    </button>
+                                </div>
                             </div>
-                        </section>
+    
+                            <p class="product__total-price currency" ><%= product.product_price * cartProduct.quantity %></p>
+    
+                            <button class="product__delete-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256"><path fill="currentColor" d="M165.66 101.66L139.31 128l26.35 26.34a8 8 0 0 1-11.32 11.32L128 139.31l-26.34 26.35a8 8 0 0 1-11.32-11.32L116.69 128l-26.35-26.34a8 8 0 0 1 11.32-11.32L128 116.69l26.34-26.35a8 8 0 0 1 11.32 11.32ZM232 128A104 104 0 1 1 128 24a104.11 104.11 0 0 1 104 104Zm-16 0a88 88 0 1 0-88 88a88.1 88.1 0 0 0 88-88Z"/></svg>
+                            </button>
+                        </article>
+                    </section>
+                    <% }) %>
 
-                        <div class="product__quantity-container">
-                            <input class="product__quantity quantity-input" type="number" value= <%= cartProduct.quantity %> min="0">
-                            <div class="item__btn-col btn-col">
-                                <button class="product__quantity-btn quantity-btn quantity-btn--add" type="button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 12 12"><path fill="currentColor" d="M6.5 1.75a.75.75 0 0 0-1.5 0V5H1.75a.75.75 0 0 0 0 1.5H5v3.25a.75.75 0 0 0 1.5 0V6.5h3.25a.75.75 0 0 0 0-1.5H6.5V1.75Z"/></svg>
-
-                                </button>
-                                <button class="product__quantity-btn quantity-btn quantity-btn--substract" type="button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 256 256"><path fill="currentColor" d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12Z"/></svg>
-                                </button>
+                    <section class="cart__summary">
+                        <h2 class="summary__title">RESUMEN</h2>
+                        <article class="summary__content">
+                            <div class="summary__items">
+                                <p class="summary__concept">CANTIDAD DE ELEMENTOS</p>
+                                <p class="summary__mount"><%= totalQuantity %></p>
+                                <p class="summary__concept">SUBTOTAL</p>
+                                <p class="summary__mount currency"><%= subtotalMount%></p>
+                                <p class="summary__concept">ENVIO</p>
+                                <p class="summary__mount currency">0,00</p>
                             </div>
-                        </div>
-
-                        <p class="product__total-price" >$ <%= product.product_price * cartProduct.quantity %></p>
-
-                        <button class="product__delete-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256"><path fill="currentColor" d="M165.66 101.66L139.31 128l26.35 26.34a8 8 0 0 1-11.32 11.32L128 139.31l-26.34 26.35a8 8 0 0 1-11.32-11.32L116.69 128l-26.35-26.34a8 8 0 0 1 11.32-11.32L128 116.69l26.34-26.35a8 8 0 0 1 11.32 11.32ZM232 128A104 104 0 1 1 128 24a104.11 104.11 0 0 1 104 104Zm-16 0a88 88 0 1 0-88 88a88.1 88.1 0 0 0 88-88Z"/></svg>
-                        </button>
-                    </article>
-                <% }) %>
-            </section>
-            <%=cart%>
-            <section class="cart__summary">
-                <h2 class="summary__title">RESUMEN</h2>
-                <article class="summary__content">
-                    <div class="summary__items">
-                        <p class="summary__concept">CANTIDAD DE ELEMENTOS</p>
-                        <p class="summary__mount">3</p>
-                        <p class="summary__concept">SUBTOTAL</p>
-                        <p class="summary__mount">$ 5.399,97</p>
-                        <p class="summary__concept">ENVIO</p>
-                        <p class="summary__mount">$ 0,00</p>
-                    </div>
-                    <div class="summary__total">
-                        <p class="summary__concept">TOTAL</p>
-                        <p class="summary__mount">$ 5.399,97</p>
-                    </div>
-                </article>
-                <button class="btn-primary summary__go-pay">IR A PAGAR</button>
-            </section>
+                            <div class="summary__total">
+                                <p class="summary__concept">TOTAL</p>
+                                <p class="summary__mount currency"><%= subtotalMount %></p>
+                            </div>
+                        </article>
+                        <button class="btn-primary summary__go-pay">IR A PAGAR</button>
+                    </section>
+                <% } else { %>
+                    <h3>El carrito está vacío</h3>
+                <% } %>
+            
         </main>
 
         <%- include('../partials/footer.ejs') %>
         <script>   
             // Guardar carrito en local storage
-            let cartJSON = unescape('<%- JSON.stringify(cart) %>');          
+            let cartJSON = unescape('<%- JSON.stringify(cart) %>');
             // console.log(typeof(cartJSON))
-            localStorage.setItem("userCart", cartJSON)
+            localStorage.setItem("cart", cartJSON)
             // console.log(cartJSON);
             // cart = JSON.parse(cartJSON)
         </script>
 
         <script src="/js/quantityInput.js"></script>
         <script src="/js/cart.js"></script>
+        <script src="/js/currency.js"></script>
     </body>
 </html>
