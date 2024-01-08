@@ -1,7 +1,8 @@
 const { log } = require('console');
 const fs = require('fs');
 const path = require('path');
-const data = require( path.join(__dirname, '../data.json') );
+const dataPath = path.join(__dirname, '../data.json')
+const data =  require(dataPath);
 const isAdmin = true;
 const categories = ["Figuras coleccionables", "Llaveros", "Remeras"];
 const licences = ["Pokemon", "Harry Potter", "Star Wars"];
@@ -18,14 +19,29 @@ const dues = [3, 6, 9, 12, 18, 24];
         isAdmin
     }),
     createItem: (req, res) => {
-        const data = req.body;
-        const database = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data.json')))
-        res.send(`item creado: ${data}`)
-        const item = {
-            id:  database.length + 1,
-            ...data
+        const formData = req.body;
+        const files = req.files;
+        const database = JSON.parse(fs.readFileSync(dataPath))
+        const newItem = {
+            product_id: database.length + 1,
+            licence_name: formData.collection.replace(/-/g, " "),
+            category_name: formData.category,
+            product_name: formData.name,
+            product_description: formData.description,
+            product_price: formData.price,
+            dues: formData.dues,
+            product_sku: formData.sku,
+            img_front: `/img/${formData.collection}/${files[0].filename}`,
+            img_back: `/img/${formData.collection}/${files[1].filename}`
         }
-        console.log(item);
+        database.push(newItem);
+        fs.writeFileSync(dataPath, JSON.stringify(database, null, ' '));
+        res.send(`item creado: ${newItem.product_name}`)
+
+        log(req.files[0]);
+        log("newItem " + JSON.stringify(newItem));
+        log("database " + JSON.stringify(database));
+
     },
     editView: (req, res) => {
         const itemId = req.params.id;

@@ -17,7 +17,7 @@
 
     <main id="edit" class="container">
         <h2 class="edit__title">EDITAR ITEM</h2>
-        <form class="product-form edit__form" action="/admin/edit" method="POST" enctype="application/x-www-form-urlencoded">
+        <form class="product-form edit__form" action="/admin/edit/<%= item.product_id %>?method=PUT" method="POST" enctype="application/x-www-form-urlencoded">
             <div class="product-form__row">
                 <div class="product-form__box">
                     <label class="product-form__label" for="collection">Categoría:</label>
