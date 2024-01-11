@@ -1,12 +1,16 @@
 const { log } = require('console');
 const path = require('path')
 const data = require( path.join(__dirname, '../data.json') );
+const { getAll } = require('../models/productModel');
 const isAdmin = false;
 
 const shopControllers = {
-    shopView: (req, res) =>  {
+    shopView: async (req, res) =>  {
         let collection = req.query.collection ? req.query.collection : "";
-        let shopData = collection ? data.filter( item => item.licence_name.toLowerCase() == collection ) : data;
+        // let shopData = collection ? data.filter( item => item.licence_name.toLowerCase() == collection ) : data;
+        const shopData = await getAll() ;
+
+        console.log(shopData);
         res.render(path.join(__dirname, '../views/shop/shop.ejs'), {
         title: "Shop",
         isAdmin, 
