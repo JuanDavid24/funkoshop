@@ -1,4 +1,3 @@
-const { log } = require('console');
 const path = require('path')
 const data = require( path.join(__dirname, '../data.json') );
 const { getAll, getOne } = require('../models/productModel');
@@ -19,7 +18,7 @@ const shopControllers = {
 
     itemView: async (req, res) => {
         const itemId = req.params.id;
-        const [item] = await getOne(itemId) ;
+        const [item] = await getOne({ product_id: itemId });
         console.log(item);
 
         const relatedItems = data.filter( element => element.licence_name == item.licence_name );
