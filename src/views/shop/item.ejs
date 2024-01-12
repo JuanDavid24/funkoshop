@@ -16,14 +16,14 @@
         <main class="container">
             <article class="item">
                 <picture class="item__cover">
-                    <img class="item__img--front" src="<%= item.img_front %>" alt="Figura Funko pop Baby Yoda - Star wars (frente)">
-                    <img class="item__img--back" src="<%= item.img_back %>" alt="Figura Funko pop Baby Yoda - Star wars (dorso)">
+                    <img class="item__img--front" src="<%= item.image_front.toUpperCase() %>" alt="Figura Funko pop Baby Yoda - Star wars (frente)">
+                    <img class="item__img--back" src="<%= item.image_back.toUpperCase() %>" alt="Figura Funko pop Baby Yoda - Star wars (dorso)">
                 </picture>
                 <section class="item__info">
                     <p class="item__license"><%= item.licence_name.toUpperCase() %></p>
                     <h3 class="item__title"><%= item.product_name.toUpperCase() %></h3>
                     <p class="item__text"><%= item.product_description %></p>
-                    <p class="item__price"><%= item.product_price %></p>
+                    <p class="item__price"><%= item.price %></p>
                     <form>
                         <input id="quantity" class="item__input quantity-input" type="number" value="1"  min="1">
                         <div class="item__btn-col btn-col">  

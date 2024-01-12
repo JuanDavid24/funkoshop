@@ -1,7 +1,7 @@
 const { log } = require('console');
 const path = require('path')
 const data = require( path.join(__dirname, '../data.json') );
-const { getAll } = require('../models/productModel');
+const { getAll, getOne } = require('../models/productModel');
 const isAdmin = false;
 
 const shopControllers = {
@@ -17,13 +17,14 @@ const shopControllers = {
         shopData       
     })},
 
-    itemView: (req, res) => {
+    itemView: async (req, res) => {
         const itemId = req.params.id;
-        const item = data.find( element => element.product_id == itemId );
+        const [item] = await getOne(itemId) ;
+        console.log(item);
+
         const relatedItems = data.filter( element => element.licence_name == item.licence_name );
         res.render(path.join(__dirname, '../views/shop/item.ejs'), {
             title: "Item",
-            isAdmin,
             item,
             relatedItems,
             isAdmin

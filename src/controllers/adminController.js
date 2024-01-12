@@ -2,18 +2,21 @@ const { log } = require('console');
 const fs = require('fs');
 const path = require('path');
 const dataPath = path.join(__dirname, '../data.json')
-const data =  require(dataPath);
+const { getAll, getOne } = require('../models/productModel');
 const isAdmin = true;
 const categories = ["Figuras coleccionables", "Llaveros", "Remeras"];
-const licences = ["Pokemon", "Harry Potter", "Star Wars"];
+const licences = ["Pokémon Indigo", "Harry Potter", "Star Wars"];
 const dues = [3, 6, 9, 12, 18, 24];
     
     const adminControllers = {
-    adminView: (req, res) => res.render(path.join(__dirname, '../views/admin/admin.ejs'), {
-        title: "Admin",
-        isAdmin,
-        data
-    }),
+    adminView: async (req, res) => {
+        const data = await getAll();
+        res.render(path.join(__dirname, '../views/admin/admin.ejs'), {
+            title: "Admin",
+            isAdmin,
+            data
+        })
+    },
     createView: (req, res) => res.render(path.join(__dirname, '../views/admin/create.ejs'), {
         title: "Crear",
         isAdmin
@@ -43,10 +46,10 @@ const dues = [3, 6, 9, 12, 18, 24];
         log("database " + JSON.stringify(database));
 
     },
-    editView: (req, res) => {
-        const itemId = req.params.id;
-        const item = data.find( element => element.product_id == itemId );
-
+    editView: async (req, res) => {
+        const { id } = req.params;
+        const [item] = await getOne(id);
+        console.log(item);
         res.render(path.join(__dirname, '../views/admin/edit.ejs'), {
             title: "Editar",
             isAdmin,
