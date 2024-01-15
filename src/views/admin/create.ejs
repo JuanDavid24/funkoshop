@@ -21,18 +21,18 @@
                     <label class="product-form__label" for="category">Categoría:</label>
                     <select class="product-form__select" name="category" id="category" required>
                         <option value="" disabled selected hidden>Seleccionar</option>
-                        <option value="Figuras Coleccionables">Figuras Coleccionables</option>
-                        <option value="Llaveros">Llaveros</option>
-                        <option value="Remeras">Remeras</option>
+                        <% categories.forEach(category => { %>
+                            <option value="<%= Object.keys(category) %>"><%= Object.values(category) %></option>
+                        <% }) %>
                     </select>
                 </div>
                 <div class="product-form__box">
-                    <label class="product-form__label" for="collection">Licencia:</label>
-                    <select class="product-form__select" name="collection" id="collection" required>
+                    <label class="product-form__label" for="licence">Licencia:</label>
+                    <select class="product-form__select" name="licence" id="licence" required>
                         <option value="" disabled selected hidden>Seleccionar</option>
-                        <option value="star-wars">Star Wars</option>
-                        <option value="pokemon">Pokemon</option>
-                        <option value="harry-potter">Harry Potter</option>
+                        <% licences.forEach(licence => { %>
+                            <option value="<%= Object.keys(licence) %>"><%= Object.values(licence) %></option>
+                        <% }) %>
                     </select>
                 </div>
             </div>

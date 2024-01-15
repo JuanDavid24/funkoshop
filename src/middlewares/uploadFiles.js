@@ -4,11 +4,13 @@ const fs = require('fs');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const collection = req.body.collection;
-        const folder = path.resolve(__dirname, '../../public/img/' + collection);
-        // if (!fs.existsSync(folder)) // crear carpeta para nueva licencia
-        //     fs.mkdirSync(folder)
-        cb(null, path.resolve(__dirname, '../../public/img/' + collection))
+        const licence = req.body.licence;
+        const folder = path.resolve(__dirname, '../../public/img/' + licence);
+
+        if (!fs.existsSync(folder)) // crear carpeta para nueva licencia
+            fs.mkdirSync(folder)
+            
+        cb(null, path.resolve(__dirname, '../../public/img/' + licence))
     },
     filename: (req, file, cb) => {
         console.log("multer file " + JSON.stringify(file))

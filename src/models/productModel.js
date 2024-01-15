@@ -30,4 +30,34 @@ const getOne = async (param) => {
         conn.releaseConnection();}
 }
 
-module.exports = { getAll, getOne }
+const create = async (values) => {
+    try {
+        const [product] = await conn.query('INSERT INTO product ( product_name, product_description, price, stock, discount, dues, sku, image_front, image_back, category_id, licence_id) VALUES ?;', [values]);
+        return product;
+    } 
+    catch (error) {
+        return {
+            error: true,
+            message: 'Se produjo un error al realizar la consulta: ' + error
+        }
+    }
+    finally {
+        conn.releaseConnection();}
+}
+
+const edit = async (columns, values, product_id) => {
+    try {
+        const [product] = await conn.query('UPDATE products SET ? = ? WHERE product_id = ?', [columns], [values], product_id);
+        return product;
+    } 
+    catch (error) {
+        return {
+            error: true,
+            message: 'Se produjo un error al realizar la consulta: ' + error
+        }
+    }
+    finally {
+        conn.releaseConnection();}
+}
+
+module.exports = { getAll, getOne, create }
