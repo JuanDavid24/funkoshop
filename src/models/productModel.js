@@ -45,7 +45,7 @@ const create = async (values) => {
         conn.releaseConnection();}
 }
 
-const edit = async (columns, values, product_id) => {
+const editOne = async (columns, values, product_id) => {
     try {
         const [product] = await conn.query('UPDATE products SET ? = ? WHERE product_id = ?', [columns], [values], product_id);
         return product;
@@ -60,4 +60,19 @@ const edit = async (columns, values, product_id) => {
         conn.releaseConnection();}
 }
 
-module.exports = { getAll, getOne, create }
+const deleteOne = async (params) => {
+    try {
+        const [data] = await conn.query('DELETE FROM product WHERE ?;', params);
+        return data;
+    } 
+    catch (error) {
+        return {
+            error: true,
+            message: 'Se produjo un error al realizar la consulta: ' + error
+        }
+    }
+    finally {
+        conn.releaseConnection();}
+}
+
+module.exports = { getAll, getOne, create, editOne, deleteOne }

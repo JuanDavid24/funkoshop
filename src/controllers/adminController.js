@@ -1,6 +1,6 @@
 const { log } = require('console');
 const path = require('path');
-const { getAll, getOne, create } = require('../models/productModel');
+const { getAll, getOne, create, deleteOne } = require('../models/productModel');
 const isAdmin = true;
 const categories = [{1: "Figuras coleccionables"}, {2: "Llaveros"}, {3: "Remeras"}];
 const licences = [{1: "Star Wars"}, {2: "Pokémon Indigo"}, {3: "Harry Potter"}];
@@ -41,9 +41,7 @@ const dues = [3, 6, 9, 12, 18, 24];
         }
         const arrayItem = [ Object.values(newItem) ]
         const result = await create( arrayItem );
-        log (`item creado: ${newItem.product_name}
-             ${result}`);
-        res.send(`item creado: ${newItem.product_name}`)
+        console.log("item creado: ", newItem.product_name, "\n", result);
         res.redirect('/admin');
     },
     editView: async (req, res) => {
@@ -76,7 +74,11 @@ const dues = [3, 6, 9, 12, 18, 24];
         }
         res.redirect('/admin');
     },
-    deleteItem: (req, res) => res.send('admin delete route')
+    deleteItem: async (req, res) => {
+        const { id } = req.params;
+        console.log (await deleteOne( {product_id: id}))
+        res.redirect('/admin');
+    }
 }
 
 module.exports = adminControllers;

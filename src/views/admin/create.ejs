@@ -16,7 +16,7 @@
     <main id="create" class="container">
         <h2 class="create__title">CREAR NUEVO ITEM</h2>
         <form class="product-form create__form" action="/admin/create" method="POST" enctype="multipart/form-data">
-            <div class="product-fo  rm__row">
+            <div class="product-form__row">
                 <div class="product-form__box">
                     <label class="product-form__label" for="category">Categoría:</label>
                     <select class="product-form__select" name="category" id="category" required>
@@ -51,7 +51,7 @@
                 <div class="product-form__box">
                     <label class="product-form__label" for="price">Precio:</label>
                     <div class="product-form__input--wrapper">
-                        <span>$</span><input class="input-underlined product-form__input--medium" type="text" name="price" id="price" data-type="currency" placeholder="0.000,00">
+                        <span>$</span><input class="input-underlined product-form__input--medium" type="text" name="price" id="price" data-type="currency" placeholder="0.000,00" required>
                     </div>
                 </div>
                 <div class="product-form__box">
@@ -63,7 +63,7 @@
                 <div class="product-form__box">
                     <label class="product-form__label" for="discount">Descuento:</label>
                     <div class="product-form__input--wrapper">
-                        <input class="input-underlined product-form__input--short" type="text" name="discount" id="discount" placeholder="0" required> <span>%</span>
+                        <input class="input-underlined product-form__input--short" type="text" name="discount" id="discount" placeholder="0"> <span>%</span>
                     </div>
                 </div>
                 <div class="product-form__box">
@@ -81,7 +81,7 @@
             </div>
             <div class="product-form__box">
                 <label class="product-form__label" for="images">Imagenes:</label>
-                <input type="file" name="images" id="img" multiple>
+                <input type="file" name="images" id="img" required multiple> 
             </div>
             <div class="product-form__row">
                 <input class="btn-primary product-form__btn" type="submit" value="Agregar Producto">
