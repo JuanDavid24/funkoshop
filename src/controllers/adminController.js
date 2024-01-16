@@ -1,6 +1,6 @@
 const { log } = require('console');
 const path = require('path');
-const { getAll, getOne, create, deleteOne } = require('../models/productModel');
+const { getAll, getOne, create, deleteOne, editOne } = require('../models/productModel');
 const isAdmin = true;
 const categories = [{1: "Figuras coleccionables"}, {2: "Llaveros"}, {3: "Remeras"}];
 const licences = [{1: "Star Wars"}, {2: "Pokémon Indigo"}, {3: "Harry Potter"}];
@@ -58,8 +58,11 @@ const dues = [3, 6, 9, 12, 18, 24];
     })},
     editItem: async (req, res) => {
         const formData = req.body;
+        const { id } = req.params;
         const files = req.files;
-        const newItem = {
+        console.log(formData)
+        console.log(files)
+        const editedItem = {
             product_name: formData.name,
             product_description: formData.description,
             price: formData.price,
@@ -72,6 +75,10 @@ const dues = [3, 6, 9, 12, 18, 24];
             category_id: formData.category,
             licence_id: formData.licence
         }
+        const columns = Array.from(Object.keys(editedItem));
+        const values = Array.from(Object.values(editedItem));
+        const result = await editOne(columns, values, id);
+        console.log(result);
         res.redirect('/admin');
     },
     deleteItem: async (req, res) => {
