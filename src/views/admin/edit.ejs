@@ -17,27 +17,27 @@
 
     <main id="edit" class="container">
         <h2 class="edit__title">EDITAR ITEM</h2>
-        <form class="product-form edit__form" action="/admin/edit/<%= item.product_id %>?method=PUT" method="POST" enctype="application/x-www-form-urlencoded">
+        <form class="product-form edit__form" action="/admin/edit/<%= item.product_id %>?_method=PUT" method="POST" enctype="multipart/form-data">
             <div class="product-form__row">
                 <div class="product-form__box">
-                    <label class="product-form__label" for="collection">Categoría:</label>
-                    <select class="product-form__select" name="collection" id="collection" required>
+                    <label class="product-form__label" for="category">Categoría:</label>
+                    <select class="product-form__select" name="category" id="category" required>
                         <option value="" disabled selected hidden>Seleccionar</option>
                         <% categories.forEach(category => { %>
-                            <option value="<%= category %>" 
-                                <% if (category === item.category_name) { %> selected <% } %>> 
-                                <%= category %></option>
+                            <option value="<%= Object.keys(category) %>" <% if (Object.keys(category) == item.category_id) { %> selected <% } %>> 
+                                <%= Object.values(category) %>
+                            </option>
                         <% }) %>
                     </select>
                 </div>
                 <div class="product-form__box">
-                    <label class="product-form__label" for="collection">Licencia:</label>
-                    <select class="product-form__select" name="collection" id="collection" required>
+                    <label class="product-form__label" for="licence">Licencia:</label>
+                    <select class="product-form__select" name="licence" id="licence" required>
                         <option value="" disabled selected hidden>Seleccionar</option>
                         <% licences.forEach(licence => { %>
-                            <option value="<%= licence %>" 
-                                <% if (licence === item.licence_name) { %> selected <% } %>> 
-                                <%= licence %></option>
+                            <option value="<%= Object.keys(licence) %>" <% if (Object.keys(licence) == item.licence_id) { %> selected <% } %>> 
+                                <%= Object.values(licence) %>
+                            </option>
                         <% }) %>
                     </select>
                 </div>

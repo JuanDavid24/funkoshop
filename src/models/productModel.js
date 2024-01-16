@@ -45,9 +45,9 @@ const create = async (values) => {
         conn.releaseConnection();}
 }
 
-const editOne = async (columns, values, product_id) => {
+const editOne = async (params, product_id) => {
     try {
-        const [product] = await conn.query('UPDATE products SET ? = ? WHERE product_id = ?', [columns], [values], product_id);
+        const [product] = await conn.query('UPDATE product SET ? WHERE ?', [params, product_id]);
         return product;
     } 
     catch (error) {

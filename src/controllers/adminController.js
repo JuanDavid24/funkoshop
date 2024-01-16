@@ -46,8 +46,7 @@ const dues = [3, 6, 9, 12, 18, 24];
     },
     editView: async (req, res) => {
         const { id } = req.params;
-        const [item] = await getOne(id);
-        console.log(item);
+        const [item] = await getOne({product_id: id});
         res.render(path.join(__dirname, '../views/admin/edit.ejs'), {
             title: "Editar",
             isAdmin,
@@ -59,10 +58,8 @@ const dues = [3, 6, 9, 12, 18, 24];
     editItem: async (req, res) => {
         const formData = req.body;
         const { id } = req.params;
-        const files = req.files;
-        console.log(formData)
-        console.log(files)
-        const editedItem = {
+        const files = req.files ? req.files : [];
+        const itemSchema = {
             product_name: formData.name,
             product_description: formData.description,
             price: formData.price,
@@ -70,14 +67,14 @@ const dues = [3, 6, 9, 12, 18, 24];
             discount: formData.discount,
             dues: formData.dues,
             sku: formData.sku,
-            image_front: `/img/${formData.licence}/${files[0].filename}`,
-            image_back: `/img/${formData.licence}/${files[1].filename}`,
             category_id: formData.category,
             licence_id: formData.licence
         }
-        const columns = Array.from(Object.keys(editedItem));
-        const values = Array.from(Object.values(editedItem));
-        const result = await editOne(columns, values, id);
+        if (files.length !== 0) {
+            itemSchema.image_front = `/img/${formData.licence}/${files[0].filename}`;
+            itemSchema.image_back = `/img/${formData.licence}/${files[1].filename}`;
+        }
+        const result = await editOne( itemSchema, {product_id: id});
         console.log(result);
         res.redirect('/admin');
     },
