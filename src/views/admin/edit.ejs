@@ -17,27 +17,27 @@
 
     <main id="edit" class="container">
         <h2 class="edit__title">EDITAR ITEM</h2>
-        <form class="product-form edit__form" action="/admin/edit/<%= item.product_id %>?method=PUT" method="POST" enctype="application/x-www-form-urlencoded">
+        <form class="product-form edit__form" action="/admin/edit/<%= item.product_id %>?_method=PUT" method="POST" enctype="multipart/form-data">
             <div class="product-form__row">
                 <div class="product-form__box">
-                    <label class="product-form__label" for="collection">Categoría:</label>
-                    <select class="product-form__select" name="collection" id="collection" required>
+                    <label class="product-form__label" for="category">Categoría:</label>
+                    <select class="product-form__select" name="category" id="category" required>
                         <option value="" disabled selected hidden>Seleccionar</option>
                         <% categories.forEach(category => { %>
-                            <option value="<%= category %>" 
-                                <% if (category === item.category_name) { %> selected <% } %>> 
-                                <%= category %></option>
+                            <option value="<%= Object.keys(category) %>" <% if (Object.keys(category) == item.category_id) { %> selected <% } %>> 
+                                <%= Object.values(category) %>
+                            </option>
                         <% }) %>
                     </select>
                 </div>
                 <div class="product-form__box">
-                    <label class="product-form__label" for="collection">Licencia:</label>
-                    <select class="product-form__select" name="collection" id="collection" required>
+                    <label class="product-form__label" for="licence">Licencia:</label>
+                    <select class="product-form__select" name="licence" id="licence" required>
                         <option value="" disabled selected hidden>Seleccionar</option>
                         <% licences.forEach(licence => { %>
-                            <option value="<%= licence %>" 
-                                <% if (licence === item.licence_name) { %> selected <% } %>> 
-                                <%= licence %></option>
+                            <option value="<%= Object.keys(licence) %>" <% if (Object.keys(licence) == item.licence_id) { %> selected <% } %>> 
+                                <%= Object.values(licence) %>
+                            </option>
                         <% }) %>
                     </select>
                 </div>
@@ -52,25 +52,25 @@
             <div class="product-form__row">
                 <div class="product-form__box">
                     <label class="product-form__label" for="sku">SKU:</label>
-                    <input class="input-underlined product-form__input--medium" type="text" name="sku" id="sku" value=<%= item.product_sku %> required>
+                    <input class="input-underlined product-form__input--medium" type="text" name="sku" id="sku" value=<%= item.sku %> required>
                 </div>
                 <div class="product-form__box">
                     <label class="product-form__label" for="price">Precio:</label>
                     <div class="product-form__input--wrapper">
                         <span>$</span><input class="input-underlined product-form__input--medium" type="text" name="price" id="price" 
-                        data-type="currency" value=" <%= item.product_price %>">
+                        data-type="currency" value=" <%= item.price %>">
                     </div>
                 </div>
                 <div class="product-form__box">
                     <label class="product-form__label" for="stock">Stock:</label>
-                    <input class="input-underlined product-form__input--short" type="text" name="stock" id="stock" placeholder="0" required>
+                    <input class="input-underlined product-form__input--short" type="text" name="stock" id="stock" value="<%= item.stock %>" required>
                 </div>
             </div>
             <div class="product-form__row">
                 <div class="product-form__box">
                     <label class="product-form__label" for="discount">Descuento:</label>
                     <div class="product-form__input--wrapper">
-                        <input class="input-underlined product-form__input--short" type="text" name="discount" id="discount" placeholder="0" required> <span>%</span>
+                        <input class="input-underlined product-form__input--short" value="<%= item.discount %>" type="text" name="discount" id="discount" required> <span>%</span>
                     </div>
                 </div>
                 <div class="product-form__box">
@@ -91,13 +91,13 @@
             </div>
             <div class="product-form__row--img">
                 <div class="product-form__img-box">    
-                    <img src="<%= item.img_front %>" alt="imagen producto frente">
+                    <img src="<%= item.image_front %>" alt="imagen producto frente">
                     <div class="product-form__img-description">
                         Frente
                     </div>
                 </div>
                 <div class="product-form__img-box">
-                    <img src="<%= item.img_back %>" alt="imagen producto dorso">
+                    <img src="<%= item.image_back %>" alt="imagen producto dorso">
                     <div class="product-form__img-description">
                         Dorso
                     </div>

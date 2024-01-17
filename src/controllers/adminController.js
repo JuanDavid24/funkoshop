@@ -1,52 +1,52 @@
 const { log } = require('console');
-const fs = require('fs');
 const path = require('path');
-const dataPath = path.join(__dirname, '../data.json')
-const data =  require(dataPath);
+const { getAll, getOne, create, deleteOne, editOne } = require('../models/productModel');
 const isAdmin = true;
-const categories = ["Figuras coleccionables", "Llaveros", "Remeras"];
-const licences = ["Pokemon", "Harry Potter", "Star Wars"];
+const categories = [{1: "Figuras coleccionables"}, {2: "Llaveros"}, {3: "Remeras"}];
+const licences = [{1: "Star Wars"}, {2: "Pokémon Indigo"}, {3: "Harry Potter"}];
 const dues = [3, 6, 9, 12, 18, 24];
     
     const adminControllers = {
-    adminView: (req, res) => res.render(path.join(__dirname, '../views/admin/admin.ejs'), {
-        title: "Admin",
-        isAdmin,
-        data
-    }),
-    createView: (req, res) => res.render(path.join(__dirname, '../views/admin/create.ejs'), {
-        title: "Crear",
-        isAdmin
-    }),
-    createItem: (req, res) => {
+    adminView: async (req, res) => {
+        const data = await getAll();
+        res.render(path.join(__dirname, '../views/admin/admin.ejs'), {
+            title: "Admin",
+            isAdmin,
+            data
+        })
+    },
+    createView: (req, res) => {     
+        res.render(path.join(__dirname, '../views/admin/create.ejs'), {
+            title: "Crear",
+            isAdmin,
+            categories,
+            licences 
+        })
+    },
+    createItem: async (req, res) => {
         const formData = req.body;
         const files = req.files;
-        const database = JSON.parse(fs.readFileSync(dataPath))
         const newItem = {
-            product_id: database.length + 1,
-            licence_name: formData.collection.replace(/-/g, " "),
-            category_name: formData.category,
             product_name: formData.name,
             product_description: formData.description,
-            product_price: formData.price,
+            price: formData.price,
+            stock: formData.stock,
+            discount: formData.discount,
             dues: formData.dues,
-            product_sku: formData.sku,
-            img_front: `/img/${formData.collection}/${files[0].filename}`,
-            img_back: `/img/${formData.collection}/${files[1].filename}`
+            sku: formData.sku,
+            image_front: `/img/${formData.licence}/${files[0].filename}`,
+            image_back: `/img/${formData.licence}/${files[1].filename}`,
+            category_id: formData.category,
+            licence_id: formData.licence
         }
-        database.push(newItem);
-        fs.writeFileSync(dataPath, JSON.stringify(database, null, ' '));
-        res.send(`item creado: ${newItem.product_name}`)
-
-        log(req.files[0]);
-        log("newItem " + JSON.stringify(newItem));
-        log("database " + JSON.stringify(database));
-
+        const arrayItem = [ Object.values(newItem) ]
+        const result = await create( arrayItem );
+        console.log("item creado: ", newItem.product_name, "\n", result);
+        res.redirect('/admin');
     },
-    editView: (req, res) => {
-        const itemId = req.params.id;
-        const item = data.find( element => element.product_id == itemId );
-
+    editView: async (req, res) => {
+        const { id } = req.params;
+        const [item] = await getOne({product_id: id});
         res.render(path.join(__dirname, '../views/admin/edit.ejs'), {
             title: "Editar",
             isAdmin,
@@ -55,8 +55,34 @@ const dues = [3, 6, 9, 12, 18, 24];
             licences,
             dues
     })},
-    editItem: (req, res) => res.send('admin editPut route'),
-    deleteItem: (req, res) => res.send('admin delete route')
+    editItem: async (req, res) => {
+        const formData = req.body;
+        const { id } = req.params;
+        const files = req.files ? req.files : [];
+        const itemSchema = {
+            product_name: formData.name,
+            product_description: formData.description,
+            price: formData.price,
+            stock: formData.stock,
+            discount: formData.discount,
+            dues: formData.dues,
+            sku: formData.sku,
+            category_id: formData.category,
+            licence_id: formData.licence
+        }
+        if (files.length !== 0) {
+            itemSchema.image_front = `/img/${formData.licence}/${files[0].filename}`;
+            itemSchema.image_back = `/img/${formData.licence}/${files[1].filename}`;
+        }
+        const result = await editOne( itemSchema, {product_id: id});
+        console.log(result);
+        res.redirect('/admin');
+    },
+    deleteItem: async (req, res) => {
+        const { id } = req.params;
+        console.log (await deleteOne( {product_id: id}))
+        res.redirect('/admin');
+    }
 }
 
 module.exports = adminControllers;

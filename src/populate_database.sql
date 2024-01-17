@@ -1,7 +1,9 @@
 SELECT * FROM category;
 SELECT * FROM licence;
+SELECT * FROM product;
 
-DELETE FROM category WHERE category_id > 0;
+-- reset autoincrement
+ALTER TABLE product AUTO_INCREMENT = 1;
 
 INSERT INTO licence (licence_id, licence_name, licence_description, licence_image) VALUES 
 	(1, 'Star Wars & The Mandalorian', 'Disfruta de una saga que sigue afregando personajes a su coleccion', '/img/star-wars/baby-yoda-1.webp'),

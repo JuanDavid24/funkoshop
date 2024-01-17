@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `funko_schema`.`product` (
   `product_id` INT NOT NULL AUTO_INCREMENT,
   `product_name` VARCHAR(60) NOT NULL,
   `product_description` VARCHAR(255) NOT NULL,
-  `price` DECIMAL NOT NULL,
+  `price` DECIMAL(10,2) NOT NULL,
   `stock` INT NOT NULL,
   `discount` INT NULL,
   `sku` VARCHAR(30) NOT NULL,

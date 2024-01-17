@@ -1,25 +1,29 @@
-const { log } = require('console');
 const path = require('path')
 const data = require( path.join(__dirname, '../data.json') );
+const { getAll, getOne } = require('../models/productModel');
 const isAdmin = false;
 
 const shopControllers = {
-    shopView: (req, res) =>  {
+    shopView: async (req, res) =>  {
         let collection = req.query.collection ? req.query.collection : "";
-        let shopData = collection ? data.filter( item => item.licence_name.toLowerCase() == collection ) : data;
+        // let shopData = collection ? data.filter( item => item.licence_name.toLowerCase() == collection ) : data;
+        const shopData = await getAll() ;
+
+        console.log(shopData);
         res.render(path.join(__dirname, '../views/shop/shop.ejs'), {
         title: "Shop",
         isAdmin, 
         shopData       
     })},
 
-    itemView: (req, res) => {
+    itemView: async (req, res) => {
         const itemId = req.params.id;
-        const item = data.find( element => element.product_id == itemId );
+        const [item] = await getOne({ product_id: itemId });
+        console.log(item);
+
         const relatedItems = data.filter( element => element.licence_name == item.licence_name );
         res.render(path.join(__dirname, '../views/shop/item.ejs'), {
             title: "Item",
-            isAdmin,
             item,
             relatedItems,
             isAdmin
