@@ -30,7 +30,10 @@ const authControllers = {
         isAdmin
     }),
     doRegister: (req, res) => res.send('register POST route'),
-    logout: (req, res) => res.send('Logout route'),
+    logout: (req, res) => {
+        req.session = null;
+        res.send('Has cerrado sesión correctamente');
+    }
 }
 
 module.exports = authControllers;
