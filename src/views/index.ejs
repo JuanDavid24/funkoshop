@@ -53,7 +53,9 @@
                                             <p class="card-item__licence"><%= item.licence_name %></p>
                                             <h4 class="card-item__title"><%= item.product_name %></h4>
                                             <p class="card-item__price"><%= item.product_price %></p>
-                                            <p class="card-item__promo"><%= item.dues %> CUOTAS SIN INTERÉS</p>
+                                            <% if (item.dues > 0) { %>
+                                                <p class="card-item__promo"><%= item.dues %> CUOTAS SIN INTERÉS</p>
+                                            <% } %>
                                         </div>
                                     </a>
                                 </article>
