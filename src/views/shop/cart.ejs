@@ -22,7 +22,6 @@
                     <p class="header__title">TOTAL</p>
                     <p class="header__title"></p>
                 </section>
-                
                 <% if (cart) { %>     
                     <% let totalQuantity = 0; let subtotalMount = 0; %> 
                     <% cart.forEach(cartProduct => { %>
@@ -93,9 +92,9 @@
         <%- include('../partials/footer.ejs') %>
         <script>   
             // Guardar carrito en local storage
-            let cartJSON = unescape('<%- JSON.stringify(cart) %>');
+            // let cartJSON = unescape('<%- JSON.stringify(cart) %>');
             // console.log(typeof(cartJSON))
-            localStorage.setItem("cart", cartJSON)
+            // localStorage.setItem("cart", cartJSON)
             // console.log(cartJSON);
             // cart = JSON.parse(cartJSON)
         </script>
