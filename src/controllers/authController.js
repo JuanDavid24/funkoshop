@@ -10,16 +10,19 @@ const authControllers = {
     doLogin: async (req, res) => {
         const { email, password } = req.body;
         const [credentials] = await getUserByEmail(email);
-        const validateEmail = credentials.email == email;
-        const validatePassword = credentials.password == password;
-        req.session.isLogged = (validateEmail && validatePassword) ? true : false;
-
-        if (req.session.isLogged) {
-            res.locals.isLogged = true;
-            return res.redirect('/admin');
-        }
-
-        res.status(401).send('Credenciales inválidas');
+        if (credentials) {
+            const validateEmail = credentials.email == email;
+            const validatePassword = credentials.password == password;
+            req.session.isLogged = (validateEmail && validatePassword) ? true : false;
+    
+            if (req.session.isLogged) {
+                res.locals.isLogged = true;
+                return res.redirect('/admin');
+            }
+    
+            res.status(401).send('Credenciales inválidas');
+        } else 
+            res.status(404).send('El correo del usuario ingresado no existe');
     },
     registerView: (req, res) => res.render(path.join(__dirname, '../views/auth/register.ejs'), {
         title: "Registrarse",
