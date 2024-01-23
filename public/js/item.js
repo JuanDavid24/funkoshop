@@ -1,5 +1,4 @@
 const addToCartBtn = document.querySelector('.item__submit-btn');
-const input = document.querySelector('.item__input');
 
 addToCartBtn.addEventListener("click", (event)=> {
     event.preventDefault();
@@ -16,7 +15,8 @@ const addToCart = (item) => {
     if (cart) {
         let foundIndex = findItemIndexInCart(item, cart);
         foundIndex != -1 ? 
-            cart[foundIndex].quantity = +cart[foundIndex].quantity + +item.quantity : 
+            addItemQuantity(cart, foundIndex, item.quantity)
+            : 
             cart.push(item);
     }
     else 
@@ -28,3 +28,5 @@ const findItemIndexInCart = (newItem, cart) => {
     const foundIndex = cart.findIndex( item => item.product.product_id === newItem.product.product_id );
     return foundIndex
 }
+
+const addItemQuantity = (cart, index, quantity) => cart[index].quantity = +cart[index].quantity + +quantity
