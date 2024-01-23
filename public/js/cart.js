@@ -2,16 +2,19 @@ const cart = JSON.parse(sessionStorage.getItem('cart'));
 
 // Muestra items del carrito en la vista
 const renderCart = () => {
+  const cartDOM = document.querySelector('.cart')
     const cartContentDOM = document.querySelector('.cart__content')
-    cart ? 
-      cart.forEach(( item, index ) => renderItem(item, index, cartContentDOM)) 
-      :
+    if (cart) {
+      cart.forEach(( item, index ) => cartContentDOM.innerHTML += createItemElement(item, index));
+      cartDOM.innerHTML += createSummaryElement(cart);
+    }
+    else
       cartContentDOM.innerHTML = "<h3>El carrito está vacío</h3>";
 }
 
-// Dibuja un item en la vista de carrito
-const renderItem = (item, index, cartContentDOM) => {
-  let cartProductDOM = ` <article class="cart__product" index= ${index}>
+// devuelve DOMelement de un item del carrito
+const createItemElement = (item, index) => {
+  return ` <article class="cart__product" index= ${index}>
     <section class="product__card">
         <picture class="product__cover">
             <img src="${item.product.image_front}" alt="baby yoda">
@@ -43,8 +46,48 @@ const renderItem = (item, index, cartContentDOM) => {
     <button class="product__delete-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256"><path fill="currentColor" d="M165.66 101.66L139.31 128l26.35 26.34a8 8 0 0 1-11.32 11.32L128 139.31l-26.34 26.35a8 8 0 0 1-11.32-11.32L116.69 128l-26.35-26.34a8 8 0 0 1 11.32-11.32L128 116.69l26.34-26.35a8 8 0 0 1 11.32 11.32ZM232 128A104 104 0 1 1 128 24a104.11 104.11 0 0 1 104 104Zm-16 0a88 88 0 1 0-88 88a88.1 88.1 0 0 0 88-88Z"/></svg>
     </button>
-    </article>`
-  cartContentDOM.innerHTML += cartProductDOM;
+    </article>`;
+}
+
+// devuelve DOMelement del summary del carrito
+const createSummaryElement = cart => {
+  const cartTotalPrice = getCartTotalPrice(cart);
+  return `<section class="cart__summary">
+  <h2 class="summary__title">RESUMEN</h2>
+  <article class="summary__content">
+      <div class="summary__items">
+          <p class="summary__concept">CANTIDAD DE ELEMENTOS</p>
+          <p class="summary__mount"> ${sumCartProducts(cart)} </p>
+          <p class="summary__concept">SUBTOTAL</p>
+          <p class="summary__mount currency"> ${cartTotalPrice} </p>
+          <p class="summary__concept">ENVIO</p>
+          <p class="summary__mount currency">0,00</p>
+      </div>
+      <div class="summary__total">
+          <p class="summary__concept">TOTAL</p>
+          <p class="summary__mount currency"> ${cartTotalPrice} </p>
+      </div>
+  </article>
+  <button class="btn-primary summary__go-pay">IR A PAGAR</button>
+</section>`
+}
+
+// devuelve la cantidad total de productos del carrito
+const sumCartProducts = cart => {
+  let sum = 0;
+  cart.forEach(product => {
+    sum += product.quantity;
+  });
+  return sum
+}
+
+// devuelve el precio total del carrito
+const getCartTotalPrice = cart => {
+  let sum = 0;
+  cart.forEach(product => {
+    sum += product.quantity * product.product.price
+  });
+  return sum
 }
 
 // Se ejecuta cuando el quantity-input cambia
@@ -56,15 +99,16 @@ itemQuantityChanged = input => {
   // actualizo cantidad del producto en el carrito y guardo
   setItemQuantity (cart, index, input.value)
   sessionStorage.setItem("cart", JSON.stringify(cart))
-  
+
   // actualizo precio total del producto en la vista
-  renderTotalItemPrice(cart[index].product.price, input.value, totalPriceDOM)
+  totalPriceDOM.innerHTML = getTotalItemPrice(cart[index].product.price, input.value)
 }
 
 // Suma una cantidad a un item en el carrito
 const setItemQuantity = (cart, index, quantity) => cart[index].quantity = +quantity;
 
-const renderTotalItemPrice = (unitPrice, quantity, elementDOM) => 
-  elementDOM.innerHTML = convertCurrency(unitPrice * quantity);
-
+// Calcula precio total de un producto del carrito
+const getTotalItemPrice = (unitPrice, quantity) => 
+  convertCurrency(unitPrice * quantity);
+  
 renderCart()
