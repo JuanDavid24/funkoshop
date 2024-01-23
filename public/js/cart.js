@@ -1,28 +1,17 @@
-let inputs = document.querySelectorAll(".quantity-input");
+const cart = JSON.parse(sessionStorage.getItem('cart'));
 
-const calculateTotalItemPrice = input => {
-  const totalPriceDOM = input.parentElement.parentElement.querySelector(".product__total-price");
-  const unitPriceDOM = input.parentElement.parentElement.querySelector(".product__price > .currency");
-  const unitPrice =  parseMoneyStrToFloat(unitPriceDOM.innerHTML);
-  totalPriceDOM.innerHTML =  convertCurrency(unitPrice * input.value)
-}
-
-
+// Muestra items del carrito en la vista
 const renderCart = () => {
-    const cart = JSON.parse(sessionStorage.getItem('cart'));
     const cartContentDOM = document.querySelector('.cart__content')
-    console.log(cartContentDOM);
-    if (cart) {
-      console.log(cartContentDOM);
-      cart.forEach(item => {
-        renderItem(item, cartContentDOM)
-      });
-    } else 
+    cart ? 
+      cart.forEach(( item, index ) => renderItem(item, index, cartContentDOM)) 
+      :
       cartContentDOM.innerHTML = "<h3>El carrito está vacío</h3>";
 }
 
-const renderItem = (item, cartContentDOM) => {
-  let cartProductDOM = ` <article class="cart__product">
+// Dibuja un item en la vista de carrito
+const renderItem = (item, index, cartContentDOM) => {
+  let cartProductDOM = ` <article class="cart__product" index= ${index}>
     <section class="product__card">
         <picture class="product__cover">
             <img src="${item.product.image_front}" alt="baby yoda">
@@ -37,7 +26,7 @@ const renderItem = (item, cartContentDOM) => {
     </section>
     
     <div class="product__quantity-container">
-        <input class="product__quantity quantity-input" type="number" onchange="calculateTotalItemPrice(this)" value= ${item.quantity} min="0">
+        <input class="product__quantity quantity-input" type="number" onchange="itemQuantityChanged(this)" value= ${item.quantity} min="0">
         <div class="item__btn-col btn-col">
             <button class="product__quantity-btn quantity-btn quantity-btn--add" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 12 12"><path fill="currentColor" d="M6.5 1.75a.75.75 0 0 0-1.5 0V5H1.75a.75.75 0 0 0 0 1.5H5v3.25a.75.75 0 0 0 1.5 0V6.5h3.25a.75.75 0 0 0 0-1.5H6.5V1.75Z"/></svg>
@@ -57,5 +46,25 @@ const renderItem = (item, cartContentDOM) => {
     </article>`
   cartContentDOM.innerHTML += cartProductDOM;
 }
+
+// Se ejecuta cuando el quantity-input cambia
+itemQuantityChanged = input => {
+  const productContainerDOM = input.parentElement.parentElement;
+  const index = productContainerDOM.getAttribute('index');
+  const totalPriceDOM = productContainerDOM.querySelector(".product__total-price");
+
+  // actualizo cantidad del producto en el carrito y guardo
+  setItemQuantity (cart, index, input.value)
+  sessionStorage.setItem("cart", JSON.stringify(cart))
+  
+  // actualizo precio total del producto en la vista
+  renderTotalItemPrice(cart[index].product.price, input.value, totalPriceDOM)
+}
+
+// Suma una cantidad a un item en el carrito
+const setItemQuantity = (cart, index, quantity) => cart[index].quantity = +quantity;
+
+const renderTotalItemPrice = (unitPrice, quantity, elementDOM) => 
+  elementDOM.innerHTML = convertCurrency(unitPrice * quantity);
 
 renderCart()
