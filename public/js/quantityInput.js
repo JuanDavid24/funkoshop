@@ -8,6 +8,7 @@ const validarInput = (input) => {
     if (input.value < 1) {
         alert("Error: La cantidad mínima es 1")
         input.value = 1;
+        input.dispatchEvent(new Event("change"));
     }
 }
 
@@ -19,11 +20,10 @@ buttonList.forEach(btn => btn.addEventListener("click", () => {
 }));
 
 const changeInputValue = (btn, input) => {
-    let btnClasses = Array.from(btn.classList);  
+    let btnClasses = Array.from(btn.classList); 
     if (btnClasses.includes("quantity-btn--add"))
-        input.value++;
-    if (btnClasses.includes("quantity-btn--substract")) {
-        if (input.value != 1) 
-            input.value--;
-    } 
+        input.value++; 
+    else if (btnClasses.includes("quantity-btn--substract")) 
+        input.value--;
+    input.dispatchEvent(new Event("change"));       
 }

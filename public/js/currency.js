@@ -15,3 +15,8 @@ window.addEventListener('load', () => {
 amounts.forEach(element => element.addEventListener( 'change', () => {
     formatPriceList([element])
 }));
+
+//pasar de moneda a Float
+const parseMoneyStrToFloat = ( moneyStr ) => {
+    return ( parseFloat( moneyStr.replace(/\$\&nbsp;/g, '').replace('.', '').replace(',', '.') ) )
+}
