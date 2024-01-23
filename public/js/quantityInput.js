@@ -1,10 +1,10 @@
 let inputList = document.querySelectorAll(".quantity-input");
 
 inputList.forEach(input => input.addEventListener( "change", () => {
-    validarInput(input)
+    validateInput(input)
 }));
 
-const validarInput = (input) => {
+const validateInput = (input) => {
     if (input.value < 1) {
         alert("Error: La cantidad mínima es 1")
         input.value = 1;

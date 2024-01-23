@@ -1,6 +1,6 @@
 let inputs = document.querySelectorAll(".quantity-input");
 
-const calcularPrecioItem = input => {
+const calculateTotalItemPrice = input => {
   const totalPriceDOM = input.parentElement.parentElement.querySelector(".product__total-price");
   const unitPriceDOM = input.parentElement.parentElement.querySelector(".product__price > .currency");
   const unitPrice =  parseMoneyStrToFloat(unitPriceDOM.innerHTML);
@@ -8,20 +8,20 @@ const calcularPrecioItem = input => {
 }
 
 
-const mostrarCarrito = () => {
+const renderCart = () => {
     const cart = JSON.parse(sessionStorage.getItem('cart'));
     const cartContentDOM = document.querySelector('.cart__content')
     console.log(cartContentDOM);
     if (cart) {
       console.log(cartContentDOM);
       cart.forEach(item => {
-        mostrarItem(item, cartContentDOM)
+        renderItem(item, cartContentDOM)
       });
     } else 
       cartContentDOM.innerHTML = "<h3>El carrito está vacío</h3>";
 }
 
-const mostrarItem = (item, cartContentDOM) => {
+const renderItem = (item, cartContentDOM) => {
   let cartProductDOM = ` <article class="cart__product">
     <section class="product__card">
         <picture class="product__cover">
@@ -37,7 +37,7 @@ const mostrarItem = (item, cartContentDOM) => {
     </section>
     
     <div class="product__quantity-container">
-        <input class="product__quantity quantity-input" type="number" onchange="calcularPrecioItem(this)" value= ${item.quantity} min="0">
+        <input class="product__quantity quantity-input" type="number" onchange="calculateTotalItemPrice(this)" value= ${item.quantity} min="0">
         <div class="item__btn-col btn-col">
             <button class="product__quantity-btn quantity-btn quantity-btn--add" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 12 12"><path fill="currentColor" d="M6.5 1.75a.75.75 0 0 0-1.5 0V5H1.75a.75.75 0 0 0 0 1.5H5v3.25a.75.75 0 0 0 1.5 0V6.5h3.25a.75.75 0 0 0 0-1.5H6.5V1.75Z"/></svg>
@@ -58,4 +58,4 @@ const mostrarItem = (item, cartContentDOM) => {
   cartContentDOM.innerHTML += cartProductDOM;
 }
 
-mostrarCarrito()
+renderCart()
