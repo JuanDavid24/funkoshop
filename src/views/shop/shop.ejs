@@ -16,14 +16,14 @@
         <aside class="filter">
             <div class="filter__search">
                 <p class="filter__title">BUSCAR</p>
-                <input type="text" name="Buscar" placeholder="Item o categoría">
+                <input type="text" name="Buscar" placeholder="Item o franquicia">
             </div>
             <div class="filter__order">
                 <p class="filter__title">ORDENAR POR</p>
                 <select name="" id="">
-                    <option value="value1" selected>Mayor a menor</option>
-                    <option value="value2">Opcion2</option>
-                    <option value="value3">Opcion3</option>
+                    <option value="value1" selected>Alfabéticamente</option>
+                    <option value="value2">Precio ↑</option>
+                    <option value="value3">Precio ↓</option>
                 </select>
             </div>
             <div class="filter__range">
@@ -61,26 +61,7 @@
 
         <section class="shop-content">
             <ul class="shop-items">               
-                <% shopData.forEach(item => { %>
-                    <li class="shop-item">
-                        <article class="card-item">
-                                <a class="card-item__list" href="/shop/item/<%= item.product_id %>">
-                                    <picture class="card-item__cover">
-                                        <img class="card-item__img--front" src="<%= item.image_front %>" alt="Funko del startrooper">
-                                        <img class="card-item__img--back" src="<%= item.image_back %>" alt="Funko del startrooper">
-                                    </picture>
-                                    <div class="card-item__content">
-                                        <p class="card-item__licence"><%= item.licence_name.toUpperCase() %></p>
-                                        <h4 class="card-item__title"><%= item.product_name.toUpperCase() %></h4>
-                                        <p class="card-item__price"><%= item.price %></p>
-                                        <% if (item.dues > 0) { %>
-                                            <p class="card-item__promo"><%= item.dues %> CUOTAS SIN INTERÉS</p>
-                                        <% } %>
-                                    </div>
-                                </a>
-                            </article>
-                        </li>
-                <% }) %>
+            
             </ul>
 
             <nav class="pagination">
@@ -97,6 +78,9 @@
     </main>
 
     <%- include('../partials/footer.ejs') %>
-     
+     <script>
+        const products = <%- JSON.stringify(shopData) %>;
+     </script>
+     <script src="/js/shop.js"> </script>
 </body>
 </html>
