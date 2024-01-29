@@ -1,5 +1,6 @@
 const searchInputDOM = document.querySelector('.filter__search > input');
 itemsContainerDOM = document.querySelector('.shop-items');
+const orderByDOM = document.querySelector('.filter__order > select');
 
 const renderItems = (itemList, containerDOM) => {
     itemList.forEach(item => { 
@@ -46,4 +47,15 @@ const joinResults = (resultA, resultB) => {
         if (resultA.indexOf(item) === -1) resultA.push(item)
     }); 
     return resultA;
+}
+console.log(orderByDOM);
+
+orderByDOM.addEventListener('change', event => {
+    orderItems(products);
+    itemsContainerDOM.innerHTML = ''
+    renderItems (products, itemsContainerDOM);
+});
+
+const orderItems = (list) => {
+    list.sort((a, b) => {return a.price - b.price})
 }
