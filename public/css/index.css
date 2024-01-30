@@ -30,3 +30,37 @@
 @import url(./pages/register.css);
 @import url(./pages/create.css);
 @import url(./pages/edit.css);
+
+::-webkit-scrollbar {
+    width: 16px;     
+    height: 4px;    
+
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-900);
+    border-radius: 4px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-500);;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+::-webkit-scrollbar-thumb:active {
+    background: var(--primary-900);
+}
+
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+}
+
+
+::-webkit-scrollbar-track:hover,
+::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+}

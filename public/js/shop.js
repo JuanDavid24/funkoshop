@@ -2,6 +2,26 @@ const searchInputDOM = document.querySelector('.filter__search > input');
 itemsContainerDOM = document.querySelector('.shop-items');
 const orderByDOM = document.querySelector('.filter__order > select');
 
+orderByDOM.addEventListener('change', event => {
+
+    const sortList = {
+        'alph': () => orderItems(products, "product_name"),
+        'priceAsc': () => orderItems(products, "price"),
+        'priceDes': () => orderItems(products, "price", true)
+    };
+    //console.log(event.target.value);
+    sortList[event.target.value]();
+    itemsContainerDOM.innerHTML = ''
+    renderItems(products, itemsContainerDOM);
+});
+
+const orderItems = (list, propName, reverse=false) => {
+    propName === 'price' ? 
+        list.sort((a, b) => Number(a[propName]) - Number(b[propName])) :
+        list.sort( (a, b) => a[propName].localeCompare(b[propName]))
+    if (reverse) list.reverse();
+}
+
 const renderItems = (itemList, containerDOM) => {
     itemList.forEach(item => { 
         containerDOM.innerHTML +=
@@ -23,23 +43,22 @@ const renderItems = (itemList, containerDOM) => {
                 </a>
             </article>
         </li>`
-        })};
+    })
+};
+           
         
-renderItems(products, itemsContainerDOM)
-    
-
 // Filtros
 searchInputDOM.addEventListener('change', (event) => {
-    let result = searchItems(event.target.value, "product_name");
-    let result2 = searchItems(event.target.value, "licence_name");
-    result = joinResults(result, result2)
-    itemsContainerDOM.innerHTML = '';
-    renderItems(result, itemsContainerDOM)
+let result = searchItems(event.target.value, "product_name");
+let result2 = searchItems(event.target.value, "licence_name");
+result = joinResults(result, result2)
+itemsContainerDOM.innerHTML = '';
+renderItems(result, itemsContainerDOM)
 });
 
 const searchItems = (searchInput, field) => {
     return products.filter( prod => prod[field].toLowerCase()
-                                    .includes(searchInput.toLowerCase()) );
+    .includes(searchInput.toLowerCase()) );
 }
 
 const joinResults = (resultA, resultB) => {
@@ -48,14 +67,6 @@ const joinResults = (resultA, resultB) => {
     }); 
     return resultA;
 }
-console.log(orderByDOM);
 
-orderByDOM.addEventListener('change', event => {
-    orderItems(products);
-    itemsContainerDOM.innerHTML = ''
-    renderItems (products, itemsContainerDOM);
-});
-
-const orderItems = (list) => {
-    list.sort((a, b) => {return a.price - b.price})
-}
+orderItems(products, "product_name");
+renderItems(products, itemsContainerDOM)

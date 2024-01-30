@@ -2,6 +2,7 @@ const cart = JSON.parse(sessionStorage.getItem('cart'));
 const cartSummaryDOM = document.querySelector('.cart__summary');
 const cartContentDOM = document.querySelector('.cart__content')
 
+
 // Muestra items del carrito en la vista
 const renderCart = () => {
   if (cart) {
