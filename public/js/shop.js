@@ -1,5 +1,5 @@
 const searchInputDOM = document.querySelector('.filter__search > input');
-itemsContainerDOM = document.querySelector('.shop-items');
+const itemsContainerDOM = document.querySelector('.shop-items');
 const orderByDOM = document.querySelector('.filter__order > select');
 
 orderByDOM.addEventListener('change', event => {
@@ -44,8 +44,7 @@ const renderItems = (itemList, containerDOM) => {
             </article>
         </li>`
     })
-};
-           
+};         
         
 // Filtros
 searchInputDOM.addEventListener('change', (event) => {
@@ -56,16 +55,19 @@ itemsContainerDOM.innerHTML = '';
 renderItems(result, itemsContainerDOM)
 });
 
-const searchItems = (searchInput, field) => {
-    return products.filter( prod => prod[field].toLowerCase()
-    .includes(searchInput.toLowerCase()) );
-}
+const searchItems = (searchInput, field) => 
+    products.filter( prod => normalizeStr(prod[field]).includes(normalizeStr(searchInput)) );
 
-const joinResults = (resultA, resultB) => {
-    resultB.forEach(item => {
-        if (resultA.indexOf(item) === -1) resultA.push(item)
+
+// quita diacríticos y pasa a minuscula un string
+const normalizeStr = str => str.normalize('NFD').replace(/[\u0300-\u036f]/g,"").toLowerCase();
+
+// une dos arrays, sin repetir elementos
+const joinResults = (arrayA, arrayB) => {
+    arrayB.forEach(element => {
+        if (arrayA.indexOf(element) === -1) arrayA.push(element)
     }); 
-    return resultA;
+    return arrayA;
 }
 
 orderItems(products, "product_name");
