@@ -5,25 +5,32 @@ let filterResult = '';
 
 // event listener select ordenar
 orderByDOM.addEventListener('change', event => {
-    const productsToDisplay = filterResult ? filterResult : products;
-    const sortList = {
-        'alph': () => orderItems(productsToDisplay, "product_name"),
-        'priceAsc': () => orderItems(productsToDisplay, "price"),
-        'priceDes': () => orderItems(productsToDisplay, "price", true)
-    };
-    sortList[event.target.value]();
+    const productsToDisplay = sortItems(event.target.value);
     itemsContainerDOM.innerHTML = ''
     renderItems(productsToDisplay, itemsContainerDOM);
 });
 
-// ordena items de una lista 
-const orderItems = (list, propName, reverse=false) => {
+// recibe criterio de ordenamiento y devuelve la lista ordenada
+const sortItems = (sortValue) => {
+    const productsToDisplay = filterResult ? filterResult : products;
+    const sortList = {
+        'alph': () => sortItemsByPropName(productsToDisplay, "product_name"),
+        'priceAsc': () => sortItemsByPropName(productsToDisplay, "price"),
+        'priceDes': () => sortItemsByPropName(productsToDisplay, "price", true)
+    };
+    sortList[sortValue]();
+    return productsToDisplay
+}
+
+// ordena items de una lista por una propiedad dada
+const sortItemsByPropName = (list, propName, reverse=false) => {
     propName === 'price' ? 
         list.sort((a, b) => Number(a[propName]) - Number(b[propName])) :
         list.sort( (a, b) => a[propName].localeCompare(b[propName]))
     if (reverse) list.reverse();
 }
 
+// muestra items en un contenedor del DOM
 const renderItems = (itemList, containerDOM) => {
     itemList.forEach(item => { 
         containerDOM.innerHTML +=
@@ -50,15 +57,16 @@ const renderItems = (itemList, containerDOM) => {
 
 // event listener input busqueda
 searchInputDOM.addEventListener('change', (event) => {
-filterResult = joinResults (searchItems(event.target.value, "product_name"),
-                                searchItems(event.target.value, "licence_name"));
+filterResult = joinResults (searchItems(products, event.target.value, "product_name"),
+                            searchItems(products, event.target.value, "licence_name"));
 itemsContainerDOM.innerHTML = '';
-renderItems(filterResult, itemsContainerDOM)
+const productsToDisplay = sortItems(orderByDOM.value)
+renderItems(productsToDisplay, itemsContainerDOM)
 });
 
 // busca items de la lista de productos por una propiedad en específico
-const searchItems = (searchInput, field) => 
-    products.filter( prod => normalizeStr(prod[field]).includes(normalizeStr(searchInput)) );
+const searchItems = (list, searchInput, field) => 
+    list.filter( element => normalizeStr(element[field]).includes(normalizeStr(searchInput)) );
 
 
 // quita diacríticos y pasa a minuscula un string
@@ -72,5 +80,5 @@ const joinResults = (arrayA, arrayB) => {
     return arrayA;
 }
 
-orderItems(products, "product_name");
+sortItemsByPropName(products, "product_name");
 renderItems(products, itemsContainerDOM)
