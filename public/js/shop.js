@@ -1,20 +1,22 @@
 const searchInputDOM = document.querySelector('.filter__search > input');
 const itemsContainerDOM = document.querySelector('.shop-items');
 const orderByDOM = document.querySelector('.filter__order > select');
+let filterResult = '';
 
+// event listener select ordenar
 orderByDOM.addEventListener('change', event => {
-
+    const productsToDisplay = filterResult ? filterResult : products;
     const sortList = {
-        'alph': () => orderItems(products, "product_name"),
-        'priceAsc': () => orderItems(products, "price"),
-        'priceDes': () => orderItems(products, "price", true)
+        'alph': () => orderItems(productsToDisplay, "product_name"),
+        'priceAsc': () => orderItems(productsToDisplay, "price"),
+        'priceDes': () => orderItems(productsToDisplay, "price", true)
     };
-    //console.log(event.target.value);
     sortList[event.target.value]();
     itemsContainerDOM.innerHTML = ''
-    renderItems(products, itemsContainerDOM);
+    renderItems(productsToDisplay, itemsContainerDOM);
 });
 
+// ordena items de una lista 
 const orderItems = (list, propName, reverse=false) => {
     propName === 'price' ? 
         list.sort((a, b) => Number(a[propName]) - Number(b[propName])) :
@@ -45,16 +47,16 @@ const renderItems = (itemList, containerDOM) => {
         </li>`
     })
 };         
-        
-// Filtros
+
+// event listener input busqueda
 searchInputDOM.addEventListener('change', (event) => {
-let result = searchItems(event.target.value, "product_name");
-let result2 = searchItems(event.target.value, "licence_name");
-result = joinResults(result, result2)
+filterResult = joinResults (searchItems(event.target.value, "product_name"),
+                                searchItems(event.target.value, "licence_name"));
 itemsContainerDOM.innerHTML = '';
-renderItems(result, itemsContainerDOM)
+renderItems(filterResult, itemsContainerDOM)
 });
 
+// busca items de la lista de productos por una propiedad en específico
 const searchItems = (searchInput, field) => 
     products.filter( prod => normalizeStr(prod[field]).includes(normalizeStr(searchInput)) );
 
