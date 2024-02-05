@@ -81,4 +81,4 @@ const joinResults = (arrayA, arrayB) => {
 }
 
 sortItemsByPropName(products, "product_name");
-renderItems(products, itemsContainerDOM)
+//renderItems(products, itemsContainerDOM)
