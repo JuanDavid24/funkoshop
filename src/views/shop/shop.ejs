@@ -66,8 +66,8 @@
 
             <nav class="pagination">
                 <a class="pagination__link pagination__link--disabled" id="prev" href="#">&#8249;</a>
-                <a class="pagination__link pagination__link--active" href="#">1</a>
-                <a class="pagination__link" href="#">2</a>
+                <a class="pagination__link pagination__link--active" href="/shop?page=1">1</a>
+                <a class="pagination__link" href="/shop?page=2">2</a>
                 <a class="pagination__link" href="#">...</a>
                 <a class="pagination__link" href="#">9</a>
                 <a class="pagination__link" href="#">10</a>
@@ -79,9 +79,9 @@
 
     <%- include('../partials/footer.ejs') %>
      <script>
-        const products = <%- JSON.stringify(shopData) %>;
+        let products = <%- JSON.stringify(shopData) %>;
      </script>
-     <script src="/js/shop.js"> </script>
-     <script src="/js/pagination.js"> </script>
+     <script type="module" src="/js/shop.js"> </script>
+     <script type="module" src="/js/pagination.js"> </script>
 </body>
 </html>

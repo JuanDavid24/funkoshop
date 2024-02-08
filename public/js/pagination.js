@@ -1,16 +1,12 @@
 const paginationLinksDOM = document.getElementsByClassName('pagination__link');
 const prevDOM = paginationLinksDOM.prev;
 const nextDOM = paginationLinksDOM.next;
-const params = new URLSearchParams(window.location.search);
 
-const limit = 6; 
-let currentPage = params.get("page"); 
+let paramsURL = new URLSearchParams(window.location.search);
+export let currentPage = paramsURL.get("page") || 1; 
 
-const paginate = (list, containerDOM, page, limit) => {
+// devuelve array de elementos a mostrar en una página
+export function paginate (list, page, limit) {
     let offset = limit * (page - 1);
-    const elementsToDisplay = list.slice(offset, offset + limit);
-    containerDOM.innerHTML = "";
-    renderItems(elementsToDisplay, containerDOM);
+    return list.slice(offset, offset + limit);
 }
-
-paginate(products,itemsContainerDOM, currentPage, 6);

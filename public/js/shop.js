@@ -1,25 +1,32 @@
+import { paginate, currentPage } from "./pagination.js";
 const searchInputDOM = document.querySelector('.filter__search > input');
 const itemsContainerDOM = document.querySelector('.shop-items');
 const orderByDOM = document.querySelector('.filter__order > select');
-let filterResult = '';
+const paramsURL = new URLSearchParams(window.location.search);
+let filterResult = JSON.parse(sessionStorage.getItem("filterResult"));
+let arrangedItems = JSON.parse(sessionStorage.getItem('arrangedItems')) || products;
 
 // event listener select ordenar
 orderByDOM.addEventListener('change', event => {
-    const productsToDisplay = sortItems(event.target.value);
-    itemsContainerDOM.innerHTML = ''
-    renderItems(productsToDisplay, itemsContainerDOM);
+    paramsURL.set('orderby', event.target.value);
+    window.history.replaceState({}, '', `${window.location.pathname}?${paramsURL}`)
+
+    arrangedItems = sortItems(arrangedItems, event.target.value);
+    sessionStorage.setItem('arrangedItems', JSON.stringify(arrangedItems));
+
+    const pageOfItems = paginate(arrangedItems, currentPage, 6)
+    renderItems( pageOfItems, itemsContainerDOM );
 });
 
 // recibe criterio de ordenamiento y devuelve la lista ordenada
-const sortItems = (sortValue) => {
-    const productsToDisplay = filterResult ? filterResult : products;
+const sortItems = (itemList, sortValue) => {
     const sortList = {
-        'alph': () => sortItemsByPropName(productsToDisplay, "product_name"),
-        'priceAsc': () => sortItemsByPropName(productsToDisplay, "price"),
-        'priceDes': () => sortItemsByPropName(productsToDisplay, "price", true)
+        'alph': () => sortItemsByPropName(itemList, "product_name"),
+        'priceAsc': () => sortItemsByPropName(itemList, "price"),
+        'priceDes': () => sortItemsByPropName(itemList, "price", true)
     };
     sortList[sortValue]();
-    return productsToDisplay
+    return itemList
 }
 
 // ordena items de una lista por una propiedad dada
@@ -31,7 +38,8 @@ const sortItemsByPropName = (list, propName, reverse=false) => {
 }
 
 // muestra items en un contenedor del DOM
-const renderItems = (itemList, containerDOM) => {
+export const renderItems = (itemList, containerDOM, clear=true) => {
+    if (clear) containerDOM.innerHTML = '';
     itemList.forEach(item => { 
         containerDOM.innerHTML +=
         `<li class="shop-item">
@@ -57,17 +65,17 @@ const renderItems = (itemList, containerDOM) => {
 
 // event listener input busqueda
 searchInputDOM.addEventListener('change', (event) => {
-filterResult = joinResults (searchItems(products, event.target.value, "product_name"),
-                            searchItems(products, event.target.value, "licence_name"));
-itemsContainerDOM.innerHTML = '';
-const productsToDisplay = sortItems(orderByDOM.value)
+filter = event.target.value;
+filterResult = joinResults (searchItems(products, filter, "product_name"),
+                            searchItems(products, filter, "licence_name"));
+const sortedItems = sortItems(arrangedItems, orderByDOM.value);
+const productsToDisplay = paginate(sortedItems, currentPage, 6);
 renderItems(productsToDisplay, itemsContainerDOM)
 });
 
 // busca items de la lista de productos por una propiedad en específico
 const searchItems = (list, searchInput, field) => 
     list.filter( element => normalizeStr(element[field]).includes(normalizeStr(searchInput)) );
-
 
 // quita diacríticos y pasa a minuscula un string
 const normalizeStr = str => str.normalize('NFD').replace(/[\u0300-\u036f]/g,"").toLowerCase();
@@ -80,5 +88,10 @@ const joinResults = (arrayA, arrayB) => {
     return arrayA;
 }
 
-sortItemsByPropName(products, "product_name");
-//renderItems(products, itemsContainerDOM)
+const search = paramsURL.get('search') ? paramsURL.get('search') : '';
+const orderBy = paramsURL.get('orderby') ? paramsURL.get('orderby') : 'alph';
+orderByDOM.value = orderBy;
+sessionStorage.setItem('arrangedItems', JSON.stringify(arrangedItems));
+
+const pageOfItems = paginate(arrangedItems, currentPage, 6);
+renderItems(pageOfItems, itemsContainerDOM);
