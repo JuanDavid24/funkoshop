@@ -2,18 +2,20 @@ import { paginate, currentPage } from "./pagination.js";
 const searchInputDOM = document.querySelector('.filter__search > input');
 const itemsContainerDOM = document.querySelector('.shop-items');
 const orderByDOM = document.querySelector('.filter__order > select');
-const paramsURL = new URLSearchParams(window.location.search);
-let filterResult = JSON.parse(sessionStorage.getItem("filterResult"));
 let arrangedItems = JSON.parse(sessionStorage.getItem('arrangedItems')) || products;
+let shopFilters = JSON.parse(sessionStorage.getItem('shopFilters')) || {};
 
 // event listener select ordenar
 orderByDOM.addEventListener('change', event => {
-    paramsURL.set('orderby', event.target.value);
-    window.history.replaceState({}, '', `${window.location.pathname}?${paramsURL}`)
+    //paramsURL.set('orderby', event.target.value);
+    //window.history.replaceState({}, '', `${window.location.pathname}?${paramsURL}`)
 
     arrangedItems = sortItems(arrangedItems, event.target.value);
-    sessionStorage.setItem('arrangedItems', JSON.stringify(arrangedItems));
 
+    sessionStorage.setItem('arrangedItems', JSON.stringify(arrangedItems));
+    shopFilters.orderBy = event.target.value;
+    sessionStorage.setItem('shopFilters', JSON.stringify(shopFilters));
+    
     const pageOfItems = paginate(arrangedItems, currentPage, 6)
     renderItems( pageOfItems, itemsContainerDOM );
 });
@@ -65,12 +67,17 @@ export const renderItems = (itemList, containerDOM, clear=true) => {
 
 // event listener input busqueda
 searchInputDOM.addEventListener('change', (event) => {
-filter = event.target.value;
-filterResult = joinResults (searchItems(products, filter, "product_name"),
-                            searchItems(products, filter, "licence_name"));
-const sortedItems = sortItems(arrangedItems, orderByDOM.value);
-const productsToDisplay = paginate(sortedItems, currentPage, 6);
-renderItems(productsToDisplay, itemsContainerDOM)
+    const searchTerm = event.target.value;
+    const searchResult = joinResults (searchItems(products, searchTerm, "product_name"),
+                                searchItems(products, searchTerm, "licence_name"));
+    const sortedItems = sortItems(searchResult, orderByDOM.value);
+
+    sessionStorage.setItem("arrangedItems", JSON.stringify(sortedItems));
+    shopFilters.search = event.target.value;
+    sessionStorage.setItem('shopFilters', JSON.stringify(shopFilters));
+
+    const itemsToDisplay = paginate(sortedItems, currentPage, 6);
+    renderItems(itemsToDisplay, itemsContainerDOM)
 });
 
 // busca items de la lista de productos por una propiedad en específico
@@ -88,10 +95,14 @@ const joinResults = (arrayA, arrayB) => {
     return arrayA;
 }
 
-const search = paramsURL.get('search') ? paramsURL.get('search') : '';
-const orderBy = paramsURL.get('orderby') ? paramsURL.get('orderby') : 'alph';
-orderByDOM.value = orderBy;
-sessionStorage.setItem('arrangedItems', JSON.stringify(arrangedItems));
+const nextPage = () => paginate(arrangedItems, currentPage+1, 6);
 
-const pageOfItems = paginate(arrangedItems, currentPage, 6);
-renderItems(pageOfItems, itemsContainerDOM);
+//const search = paramsURL.get('search') ? paramsURL.get('search') : '';
+//const orderBy = paramsURL.get('orderby') ? paramsURL.get('orderby') : 'alph';
+//orderByDOM.value = orderBy;
+window.onload = () => {
+    if (shopFilters.search) searchInputDOM.value = shopFilters.search;
+    if (shopFilters.orderBy) orderByDOM.value = shopFilters.orderBy;
+    const pageOfItems = paginate(arrangedItems, currentPage, 6);
+    renderItems(pageOfItems, itemsContainerDOM);
+}
