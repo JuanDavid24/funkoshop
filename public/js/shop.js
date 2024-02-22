@@ -95,7 +95,10 @@ const joinResults = (arrayA, arrayB) => {
     return arrayA;
 }
 
-const nextPage = () => paginate(arrangedItems, currentPage+1, 6);
+function nextPage(element) {
+    console.log("element");
+    paginate(arrangedItems, currentPage+1, 6)
+} 
 
 //const search = paramsURL.get('search') ? paramsURL.get('search') : '';
 //const orderBy = paramsURL.get('orderby') ? paramsURL.get('orderby') : 'alph';
