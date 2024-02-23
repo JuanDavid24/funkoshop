@@ -1,7 +1,8 @@
-import { paginate, currentPage } from "./pagination.js";
+import { paginate, currentPage, createPaginationLinks } from "./pagination.js";
 const searchInputDOM = document.querySelector('.filter__search > input');
 const itemsContainerDOM = document.querySelector('.shop-items');
 const orderByDOM = document.querySelector('.filter__order > select');
+const paginationDOM = document.querySelector('.pagination');
 let arrangedItems = JSON.parse(sessionStorage.getItem('arrangedItems')) || products;
 let shopFilters = JSON.parse(sessionStorage.getItem('shopFilters')) || {};
 
@@ -100,12 +101,10 @@ function nextPage(element) {
     paginate(arrangedItems, currentPage+1, 6)
 } 
 
-//const search = paramsURL.get('search') ? paramsURL.get('search') : '';
-//const orderBy = paramsURL.get('orderby') ? paramsURL.get('orderby') : 'alph';
-//orderByDOM.value = orderBy;
 window.onload = () => {
     if (shopFilters.search) searchInputDOM.value = shopFilters.search;
     if (shopFilters.orderBy) orderByDOM.value = shopFilters.orderBy;
     const pageOfItems = paginate(arrangedItems, currentPage, 6);
     renderItems(pageOfItems, itemsContainerDOM);
+    createPaginationLinks(paginationDOM, arrangedItems.length, currentPage, 6)
 }
