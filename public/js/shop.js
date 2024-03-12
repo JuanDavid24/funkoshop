@@ -77,8 +77,7 @@ searchInputDOM.addEventListener('change', (event) => {
     shopFilters.search = event.target.value;
     sessionStorage.setItem('shopFilters', JSON.stringify(shopFilters));
 
-    const itemsToDisplay = paginate(sortedItems, currentPage, 6);
-    renderItems(itemsToDisplay, itemsContainerDOM)
+    window.location.href = "/shop?page=1"; //vuelvo a pagina 1
 });
 
 // busca items de la lista de productos por una propiedad en específico
