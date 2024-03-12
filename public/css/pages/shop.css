@@ -89,7 +89,7 @@
 
 /* PAGINATION */
 
-.paginaiton {
+.pagination {
     display: flex;
     gap: var(--spacing-8);
     
