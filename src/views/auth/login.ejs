@@ -34,13 +34,16 @@
                     </div>
                 </div>
             </form>
-            
+
             <a class="login__forgot-pass" href="">Olvidé mi contraseña</a>
+
+            <% if (messages) { %>
+                <p class="login__error"><%= messages %></p> <!-- Muestra el mensaje de error -->
+            <% } %>
+            
         </main>
         
         <!--  footer  -->
         <%- include('../partials/footer.ejs') %>
-
-        <script src="" async defer></script>
     </body>
 </html>

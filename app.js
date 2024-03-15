@@ -2,6 +2,7 @@ const express = require ('express');
 const app = express();
 const path = require ('path');
 const methodOverride = require('method-override');
+const flash = require('connect-flash');
 const { initSession } = require('./src/middlewares/session');
 
 // Import routes
@@ -24,6 +25,9 @@ app.use(express.static('public'));  //servidor estático
 
 // Crear sesion de usuario
 app.use(initSession());
+
+// flash messages
+app.use(flash());
 
 app.use('/', mainRoutes);
 app.use('/shop', shopRoutes);

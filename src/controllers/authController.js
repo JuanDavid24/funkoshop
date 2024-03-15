@@ -5,24 +5,38 @@ const isAdmin = true;
 const authControllers = {
     loginView: (req, res) => res.render(path.join(__dirname, '../views/auth/login.ejs'), {
         title: "Login",
-        isAdmin
+        isAdmin,
+        messages: req.flash('error')
     }),
     doLogin: async (req, res) => {
         const { email, password } = req.body;
-        const [credentials] = await getUserByEmail(email);
-        if (credentials) {
-            const validateEmail = credentials.email == email;
-            const validatePassword = credentials.password == password;
-            req.session.isLogged = (validateEmail && validatePassword) ? true : false;
-    
-            if (req.session.isLogged) {
-                res.locals.isLogged = true;
-                return res.redirect('/admin');
+        
+        try {        
+            const [credentialsDB] = await getUserByEmail(email);
+            const validEmail = credentialsDB ? credentialsDB.email == email : false;
+            const validPassword = credentialsDB ? credentialsDB.password == password : false;
+            req.session.isLogged = (validEmail && validPassword) ? true : false;     
+
+            if (!validEmail) {
+                req.flash('error', 'Usuario no encontrado');
+                return res.redirect('/auth/login');
             }
-    
-            res.status(401).send('Credenciales inválidas');
-        } else 
-            res.status(404).send('El correo del usuario ingresado no existe');
+            if (!validPassword) {
+                req.flash('error', 'Contraseña incorrecta');
+                return res.redirect('/auth/login');
+            }
+            // Login ok
+            res.locals.isLogged = true;
+            return res.redirect('/admin');    
+            
+        } catch (error) {
+            console.error('Error al verificar credenciales:', error);
+            req.flash('error', 'Error en el servidor');
+            res.redirect('/login');
+        } finally {
+            // Limpiar la lista de mensajes flash después de cada solicitud
+            req.flash('error', '');
+        }
     },
     registerView: (req, res) => res.render(path.join(__dirname, '../views/auth/register.ejs'), {
         title: "Registrarse",

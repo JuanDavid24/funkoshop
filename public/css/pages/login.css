@@ -43,7 +43,6 @@
     gap: var(--spacing-8);
 }
 
-
 .login__remember-input {
     width: var(--spacing-20);
     border-radius: 6px;
@@ -54,6 +53,13 @@
 .login__remember-label {
     font-size: var(--font-medium);
     font-weight: 400;
+}
+
+.login__error {
+    margin-top: var(--spacing-24);
+    font-size: var(--font-medium);
+    font-weight: 400;
+    color: red;
 }
 
 .login__forgot-pass {
