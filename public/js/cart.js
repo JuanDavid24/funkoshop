@@ -1,19 +1,31 @@
-const cart = JSON.parse(sessionStorage.getItem('cart'));
+const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
 const cartSummaryDOM = document.querySelector('.cart__summary');
 const cartContentDOM = document.querySelector('.cart__content')
 
 
-// Muestra items del carrito en la vista
+// Muestra carrito + resumen
 const renderCart = () => {
-  if (cart) {
-    cart.forEach(( item, index ) => cartContentDOM.innerHTML += createItemElement(item, index));
-    cartSummaryDOM.innerHTML += createSummaryElement(cart);
+  if (cart.length) {
+    renderItems();
+    renderSummary();
   }
-  else
+  else {
     cartContentDOM.innerHTML = "<h3>El carrito está vacío</h3>";
+    cartSummaryDOM.innerHTML = '';
+  }
+
 }
 
-// devuelve DOMelement de un item del carrito
+// Muestra items del carrito en la vista
+const renderItems = () => {
+  cartContentDOM.innerHTML = '';
+  cart.forEach(( item, index ) => cartContentDOM.innerHTML += createItemElement(item, index))
+}
+
+// Muestra resumen del carrito
+const renderSummary = () => cartSummaryDOM.innerHTML = createSummaryElement(cart);
+
+// devuelve DOMelement de un item del carrito 
 const createItemElement = (item, index) => {
   return ` <article class="cart__product" index= ${index}>
     <section class="product__card">
@@ -44,7 +56,7 @@ const createItemElement = (item, index) => {
     
     <p class="product__total-price currency" > ${getTotalItemPrice(item.product.price, item.quantity)} </p>
     
-    <button class="product__delete-btn">
+    <button class="product__delete-btn" onclick=deleteItem(this)>
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256"><path fill="currentColor" d="M165.66 101.66L139.31 128l26.35 26.34a8 8 0 0 1-11.32 11.32L128 139.31l-26.34 26.35a8 8 0 0 1-11.32-11.32L116.69 128l-26.35-26.34a8 8 0 0 1 11.32-11.32L128 116.69l26.34-26.35a8 8 0 0 1 11.32 11.32ZM232 128A104 104 0 1 1 128 24a104.11 104.11 0 0 1 104 104Zm-16 0a88 88 0 1 0-88 88a88.1 88.1 0 0 0 88-88Z"/></svg>
     </button>
     </article>`;
@@ -111,7 +123,16 @@ const itemQuantityChanged = input => {
 const setItemQuantity = (cart, index, quantity) => cart[index].quantity = +quantity;
 
 // Calcula precio total de un producto del carrito
-const getTotalItemPrice = (unitPrice, quantity) => 
-  convertCurrency(unitPrice * quantity)
+const getTotalItemPrice = (unitPrice, quantity) => convertCurrency(unitPrice * quantity)
+
+// Elimina item del carrito. Recibe el boton "X" del elemento a borrar
+const deleteItem = (deleteBtn) => {
+  const itemDOM = deleteBtn.parentElement
+  const index = Number(itemDOM.getAttribute('index'));
+  cart.splice(index, 1);
+  sessionStorage.setItem('cart', JSON.stringify(cart));
+  itemDOM.remove();
+  renderCart();
+}
 
 renderCart()
