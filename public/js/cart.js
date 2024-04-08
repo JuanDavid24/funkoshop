@@ -131,8 +131,7 @@ const deleteItem = (deleteBtn) => {
   const index = Number(itemDOM.getAttribute('index'));
   cart.splice(index, 1);
   sessionStorage.setItem('cart', JSON.stringify(cart));
-  itemDOM.remove();
-  renderCart();
+  window.location.reload();
 }
 
 renderCart()
