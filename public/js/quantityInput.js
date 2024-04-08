@@ -14,12 +14,11 @@ const validateInput = (input) => {
 
 let buttonList = document.querySelectorAll(".quantity-btn");
 
-buttonList.forEach(btn => btn.addEventListener("click", () => {
-    let input = btn.parentElement.parentElement.querySelector(".quantity-input");
-    changeInputValue(btn, input);
-}));
+buttonList.forEach(btn => btn.addEventListener("click", () => changeInputValue(btn) ));
 
-const changeInputValue = (btn, input) => {
+const changeInputValue = (btn) => {
+    let input = btn.parentElement.parentElement.querySelector(".quantity-input");
+
     let btnClasses = Array.from(btn.classList); 
     if (btnClasses.includes("quantity-btn--add"))
         input.value++; 
