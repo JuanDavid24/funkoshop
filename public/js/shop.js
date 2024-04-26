@@ -1,12 +1,10 @@
 import { paginate, currentPage, createPaginationLinks } from "./pagination.js";
 import { orderByDOM, sortItems } from "./shopOrdering.js";
 import { minInput, maxInput, initializeRangeFields, filterItemsByRange } from "./shopRange.js";
+import { searchItems, searchInputDOM } from "./shopSearch.js";
 export let arrangedItems = JSON.parse(sessionStorage.getItem('arrangedItems')) || products;
 export let shopFilters = JSON.parse(sessionStorage.getItem('shopFilters')) || {};
-export const searchInputDOM = document.querySelector('.filter__search > input');
 export const itemsContainerDOM = document.querySelector('.shop-items');
-// export const minInput = document.querySelector('.filter__min');
-// export const maxInput = document.querySelector('.filter__max');
 const paginationDOM = document.querySelector('.pagination');
 
 // muestra items en un contenedor del DOM
@@ -40,26 +38,39 @@ export const updateArrangedItems = (newValue) => {
     arrangedItems = newValue;
     sessionStorage.setItem('arrangedItems', JSON.stringify(arrangedItems));
 }
+
+// inicializa shopFilters para evitar campos undefined
+const initializeShopFilters = () => {
+    if (!shopFilters.search) updateShopFilters({"search": ""});
+    if (!shopFilters.min) updateShopFilters({"min": minInput.value});
+    if (!shopFilters.max) updateShopFilters({"max": maxInput.value});
+    if (!shopFilters.orderBy) updateShopFilters({"orderBy": 'alph'});
+}
 // acualiza shopFilters en base a un objeto
 export const updateShopFilters = (keyValues) => {
-    console.log( keyValues);
     for (const key in keyValues) shopFilters[key] = keyValues[key];
-    console.log(shopFilters);
     sessionStorage.setItem('shopFilters', JSON.stringify(shopFilters));
 }
 
-export const filterByRange = () => {
+export const filterAndSort = () => {
+    // Rango min-max
     let items = filterItemsByRange(products, Number(shopFilters.min), Number(shopFilters.max));
-    console.log(items);
+
+    // Busqueda
+    items = searchItems(items, shopFilters.search);
+
+    // Ordenamiento
+    items = sortItems(items, shopFilters.orderBy)
+    
     updateArrangedItems(items);
     window.location.href = "/shop?page=1"; //vuelvo a pagina 1
 }
 
 window.onload = () => {
-    if (shopFilters.search) searchInputDOM.value = shopFilters.search;
-    if (shopFilters.orderBy) orderByDOM.value = shopFilters.orderBy;
+    initializeShopFilters();
+    searchInputDOM.value = shopFilters.search;
+    orderByDOM.value = shopFilters.orderBy;
     initializeRangeFields(minInput, maxInput);
-
     const pageOfItems = paginate(arrangedItems, currentPage, 6);
     renderItems(pageOfItems, itemsContainerDOM);
     createPaginationLinks(paginationDOM, arrangedItems.length, currentPage, 6)

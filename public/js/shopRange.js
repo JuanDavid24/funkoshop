@@ -1,4 +1,4 @@
-import { shopFilters, updateShopFilters, arrangedItems, filterByRange } from "./shop.js";
+import { shopFilters, updateShopFilters, arrangedItems, filterAndSort } from "./shop.js";
 export const minInput = document.querySelector('.filter__min');
 export const maxInput = document.querySelector('.filter__max');
 
@@ -21,7 +21,7 @@ minInput.addEventListener('change', (event) => {
    validarInput(event.target, validacionMin);
    if (shopFilters.min != event.target.value) {
         updateShopFilters({ 'min': Number(event.target.value) });
-        filterByRange()
+        filterAndSort()
    }
 });
 
@@ -29,7 +29,7 @@ maxInput.addEventListener('change', (event) => {
     validarInput(event.target, validacionMax, getPrecioMax());
     if (shopFilters.max != event.target.value) {
         updateShopFilters({ 'max': Number(event.target.value) });
-        filterByRange()
+        filterAndSort()
    }
 });
 

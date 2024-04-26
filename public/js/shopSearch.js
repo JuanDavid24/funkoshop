@@ -1,22 +1,20 @@
-import { searchInputDOM, updateArrangedItems, shopFilters } from "./shop.js";
-import { sortItems, orderByDOM } from "./shopOrdering.js";
+import { updateShopFilters, filterAndSort } from "./shop.js";
+
+export const searchInputDOM = document.querySelector('.filter__search > input');
 
 // event listener input busqueda
 searchInputDOM.addEventListener('change', (event) => {
-    const searchTerm = event.target.value;
-    const searchResult = joinResults (searchItems(products, searchTerm, "product_name"),
-                                searchItems(products, searchTerm, "licence_name"));
-    const sortedItems = sortItems(searchResult, orderByDOM.value);
-    updateArrangedItems(sortedItems);
-
-    shopFilters.search = event.target.value;
-    sessionStorage.setItem('shopFilters', JSON.stringify(shopFilters));
-
-    window.location.href = "/shop?page=1"; //vuelvo a pagina 1
+    updateShopFilters({"search": event.target.value});
+    filterAndSort()
 });
 
+// busca items en lista de items por varios campos
+export const searchItems = (list, searchTerm) => 
+    joinResults (searchItemsByField(list, searchTerm, "product_name"),
+                 searchItemsByField(list, searchTerm, "licence_name"));
+
 // busca items de la lista de productos por una propiedad en específico
-const searchItems = (list, searchInput, field) => 
+const searchItemsByField = (list, searchInput, field) => 
     list.filter( element => normalizeStr(element[field]).includes(normalizeStr(searchInput)) );
 
 // quita diacríticos y pasa a minuscula un string

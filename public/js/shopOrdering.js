@@ -1,17 +1,12 @@
-import { arrangedItems, shopFilters, renderItems, updateArrangedItems, itemsContainerDOM } from "./shop.js";
-import { paginate, currentPage, createPaginationLinks } from "./pagination.js";
+import { arrangedItems, updateShopFilters, updateArrangedItems } from "./shop.js";
 export const orderByDOM = document.querySelector('.filter__order > select');
 
 
 // event listener select ordenar
 orderByDOM.addEventListener('change', event => {
-    updateArrangedItems( sortItems(arrangedItems, event.target.value) )
-
-    shopFilters.orderBy = event.target.value;
-    sessionStorage.setItem('shopFilters', JSON.stringify(shopFilters));
-    
-    const pageOfItems = paginate(arrangedItems, currentPage, 6)
-    renderItems( pageOfItems, itemsContainerDOM );
+    updateShopFilters({'orderBy': event.target.value});
+    updateArrangedItems( sortItems(arrangedItems, event.target.value) );
+    window.location.href = "/shop?page=1"; //vuelvo a pagina 1
 });
 
 // recibe criterio de ordenamiento y devuelve la lista ordenada
