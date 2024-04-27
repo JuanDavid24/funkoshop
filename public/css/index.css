@@ -19,6 +19,8 @@
 @import url(./components/buttons.css);
 @import url(./components/input.css);
 @import url(./components/form.css);
+@import url(/ext/toasty/toasty.min.css);
+@import url(./components/toast.css);
 
 /* Pages */
 @import url(./pages/home.css);

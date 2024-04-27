@@ -1,0 +1,12 @@
+.toast {
+    background-color: var(--light-bg-solid);
+    color: var(--dark-solid);
+    font-size: var(--font-small);
+    font-family: var(--alternative-font);
+}
+
+.toast--success {
+    border-color: var(--primary-solid);
+}
+
+.toast-progressbar--success { background-color: var(--primary-solid); }

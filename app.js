@@ -22,6 +22,7 @@ app.use(express.json());
 
 app.use(methodOverride('_method'));  //sobrescribir métodos para usar PUT y PATCH en los form
 app.use(express.static('public'));  //servidor estático
+app.use('/ext/toasty', express.static(__dirname + '/node_modules/egalink-toasty.js/dist'));
 
 // Crear sesion de usuario
 app.use(initSession());

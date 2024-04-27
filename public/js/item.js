@@ -7,8 +7,11 @@ addToCartBtn.addEventListener("click", (event)=> {
         "product": JSON.parse(sessionStorage.getItem("currentItem")),
         "quantity": quantity
     };
-    addToCart(item)
-})
+    addToCart(item);
+    item.quantity > 1 ?
+        toast.success(`¡Se agregaron ${item.quantity} items al carrito!`, 4000)
+       :toast.success(`¡Se agregó 1 item al carrito!`, 4000) 
+});
 
 const addToCart = (item) => {
     let cart = JSON.parse(sessionStorage.getItem("cart"));
