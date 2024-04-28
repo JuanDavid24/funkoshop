@@ -30,8 +30,24 @@ const getOne = async (param) => {
         conn.releaseConnection();}
 }
 
+const getNewOnes = async (param) => {
+    try {
+        const [data] = await conn.query('SELECT product.*, licence.licence_name, category.category_name from (product LEFT JOIN licence ON product.licence_id = licence.licence_id) LEFT JOIN category ON product.category_id = category.category_id ORDER BY product.product_id DESC LIMIT ?;', param);
+        return data;
+    } 
+    catch (error) {
+        return {
+            error: true,
+            message: 'Se produjo un error al realizar la consulta: ' + error
+        }
+    }
+    finally {
+        conn.releaseConnection();}
+}
+
 const getByLicence = async (param) => {
     try {
+        console.log(param);
         const [data] = await conn.query('SELECT product.*, licence.licence_name, category.category_name from (product INNER JOIN licence ON product.licence_id = ? AND product.licence_id = licence.licence_id) INNER JOIN category ON product.category_id = category.category_id;', param);
         return data;
     } 
@@ -90,4 +106,4 @@ const deleteOne = async (params) => {
         conn.releaseConnection();}
 }
 
-module.exports = { getAll, getOne, getByLicence, create, editOne, deleteOne }
+module.exports = { getAll, getOne, getNewOnes, getByLicence, create, editOne, deleteOne }

@@ -18,7 +18,7 @@ const shopControllers = {
         const [item] = await getOne({ product_id: itemId });
         console.log(item);
 
-        const relatedItems = data.filter( element => element.licence_name == item.licence_name );
+        const relatedItems = await getByLicence(item.licence_id)
         res.render(path.join(__dirname, '../views/shop/item.ejs'), {
             title: "Item",
             item,

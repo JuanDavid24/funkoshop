@@ -1,13 +1,14 @@
 const path = require('path')
 const dataJSON = require( path.join(__dirname, '../data.json') );
+const { getNewOnes } = require('../models/productModel');
 const { getAll } = require('../models/licenceModel');
 const isAdmin = false;
 
 const mainControllers = {
     homeView: async (req, res) => {
-        const newItems = dataJSON.slice( dataJSON.length - 3 );
+        const newItems = await getNewOnes(5);
+        console.log(newItems);
         const licences = await getAll();
-        console.log(licences);
         res.render('index', {
             title: "Home",
             newItems,
