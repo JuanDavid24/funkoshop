@@ -58,3 +58,23 @@ header {
 .submenu__link:hover {
     background-color: var(--primary-900);
 }
+
+.navbar__item--cart {
+    display: flex;
+    position: relative;
+    align-items: center;
+    align-content: center;
+    line-height: 20px;
+}
+.navbar__cart-notification {
+    position: absolute;
+    top: -0.8rem;
+    right: -1rem;
+    height: 2.2rem;
+    width: 2.2rem;
+    line-height: 20px;
+    text-align: center;
+    background-color: var(--primary-solid);
+    font-size: var(--font-medium);
+    border-radius: 50%;
+}
