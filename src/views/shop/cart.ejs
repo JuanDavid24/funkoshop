@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 
 <html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title><%= title %> | FUNKOSHOP</title>
-        <meta name="description" content="HTML-CSS">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/index.css">
-    </head>
-    <body>
 
-        <%- include('../partials/header.ejs') %>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>
+        <%= title %> | FUNKOSHOP
+    </title>
+    <meta name="description" content="HTML-CSS">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+
+    <%- include('../partials/header.ejs') %>
 
         <main class="container cart">
             <h2 class="cart__title">CARRITO DE COMPRAS</h2>
@@ -21,16 +25,22 @@
                     <p class="header__title">CANTIDAD</p>
                     <p class="header__title">TOTAL</p>
                     <p class="header__title"></p>
-                </section>       
-            </section>  
+                </section>
+            </section>
 
             <section class="cart__summary"> </section>
         </main>
 
         <%- include('../partials/footer.ejs') %>
 
-        <script src="/js/currency.js"></script>
-        <script src="/js/cart.js"></script>
-        <script src="/js/quantityInput.js"></script>
-    </body>
+            <script src="/js/currency.js"></script>
+            <script type="module">
+                import { renderCart, deleteItem, itemQuantityChanged } from '/js/cart.js';
+                window.deleteItem = deleteItem;
+                window.itemQuantityChanged = itemQuantityChanged;
+                renderCart();
+            </script>
+            <script src="/js/quantityInput.js"></script>
+</body>
+
 </html>

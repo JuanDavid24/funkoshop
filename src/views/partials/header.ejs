@@ -5,45 +5,53 @@
                 <img src="/img/branding/logo_light_horizontal.svg" alt="Logo Funkoshop">
             </a>
         </picture>
-    
-        <ul class="navbar__menu"> 
-            <% if (isAdmin) { %>
-                <li class="navbar__item"> 
-                    <a class="navbar__link with-icon" href="/shop">VER TIENDA</a> 
-                </li>
-                <li class="navbar__item"> 
-                    <a class="navbar__link" href="/admin">ADMIN</a> </li>
-                <li class="navbar__item"> 
-                    <a class="navbar__link" href=/auth/logout>SALIR</a> </li>
 
-            <% } else { %> 
-            <li class="navbar__item with-submenu"> 
-                <a class="navbar__link with-icon" href="/shop">SHOP<iconify-icon icon="mdi:chevron-down"></iconify-icon> </a> 
-                <ul class="submenu">
-                    <li class="submenu__item">
-                        <a class="submenu__link" href="/shop?funkos">Funkos</a>
+        <ul class="navbar__menu">
+            <% if (isAdmin) { %>
+                <li class="navbar__item">
+                    <a class="navbar__link with-icon" href="/shop">VER TIENDA</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link" href="/admin">ADMIN</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link" href=/auth/logout>SALIR</a>
+                </li>
+
+                <% } else { %>
+                    <li class="navbar__item with-submenu">
+                        <a class="navbar__link with-icon" href="/shop">SHOP<iconify-icon
+                                icon="mdi:chevron-down"></iconify-icon> </a>
+                        <ul class="submenu">
+                            <li class="submenu__item">
+                                <a class="submenu__link" href="/shop?funkos">Funkos</a>
+                            </li>
+                            <li class="submenu__item">
+                                <a class="submenu__link" href="/shop?remeras">Remeras</a>
+                            </li>
+                            <li class="submenu__item">
+                                <a class="submenu__link" href="/shop?llaveros">Llaveros</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="submenu__item">
-                        <a class="submenu__link" href="/shop?remeras">Remeras</a>
+                    <li class="navbar__item">
+                        <a class="navbar__link" href="/contact">CONTACTO</a>
                     </li>
-                    <li class="submenu__item">
-                        <a class="submenu__link" href="/shop?llaveros">Llaveros</a>
+                    <li class="navbar__item">
+                        <a class="navbar__link" href="/auth/login">LOGIN</a>
                     </li>
-                </ul>
-            </li>
-            <li class="navbar__item"> 
-                <a class="navbar__link" href="/contact">CONTACTO</a> </li>
-            <li class="navbar__item"> 
-                <a class="navbar__link" href="/auth/login">LOGIN</a> </li>
-            <li class="navbar__item--cart">
-                <span class="navbar__cart-notification">10</span> 
-                <a class="navbar__cart" href="/shop/cart">
-                <img src="/img/icons/cart-icon.svg" alt="Carrito de compras">
-            </a> </li> 
-            <% } %>
+                    <li class="navbar__item--cart">
+                        <span class="navbar__cart-notification"></span>
+                        <a class="navbar__cart" href="/shop/cart">
+                            <img src="/img/icons/cart-icon.svg" alt="Carrito de compras">
+                        </a>
+                    </li>
+                    <% } %>
         </ul>
 
         <ul class="navbar__menu">
         </ul>
     </nav>
 </header>
+<script type="module" src="/js/cart.js"></script>
+<script type="module" src="/js/cartNotification.js"></script>
